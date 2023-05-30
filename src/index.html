@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="keywords" content="" />
+	<meta name="author" content="" />
+	<meta name="robots" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="هتل هوشمند بهامد" />
+	<meta property="og:title" content="شرکت دانش بنیان بهبود ارتباط چهلستون" />
+	<meta property="og:description" content="داشبورد هتل هوشمند بهامد" />
+	<meta property="og:image" content="https://innap.dexignzone.com/xhtml/social-image.png" />
+	<meta name="format-detection" content="telephone=no">
+	
+	<!-- PAGE TITLE HERE -->
+	<title>داشبورد هتل هوشمند بهامد</title>
+	
+	<!-- FAVICONS ICON -->
+	<link rel="shortcut icon" type="image/png" href="assets/images/favicon.png" />
+	<link rel="stylesheet" href="assets/vendor/chartist/css/chartist.min.css">
+	<link href="assets/vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
+	<link href="assets/vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+	<!-- Style css -->
+    <link href="assets/css/style.css" rel="stylesheet">
+	
+</head>
+<body>
+  <div id="preloader">
+    <div class="waviy">
+		   <span style="--i:1">B</span>
+		   <span style="--i:2">e</span>
+		   <span style="--i:3">h</span>
+		   <span style="--i:4">a</span>
+		   <span style="--i:5">m</span>
+		   <span style="--i:6">a</span>
+		   <span style="--i:7">d</span>
+		   <span style="--i:8">.</span>
+		   <span style="--i:9">.</span>
+		   <span style="--i:10">.</span>
+		</div>
+  </div>
+
+  <app-root></app-root>
+
+  <script src="assets/vendor/global/global.min.js"></script>
+  <script src="assets/vendor/chart.js/Chart.bundle.min.js"></script>
+  <script src="assets/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+  
+  <!-- Chart piety plugin files -->
+  <script src="assets/vendor/peity/jquery.peity.min.js"></script>
+	
+	<!-- Apex Chart -->
+	<script src="assets/vendor/apexchart/apexchart.js"></script>
+	
+	<script src="assets/vendor/bootstrap-datetimepicker/js/moment.js"></script>
+	<script src="assets/vendor/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+	
+	<!-- Dashboard 1 -->
+	<script src="assets/js/dashboard/dashboard-1.js"></script>
+    <script src="assets/js/custom.min.js"></script>
+	<script src="assets/js/deznav-init.js"></script>
+
+  <script>
+		$(function () {
+			$('#datetimepicker').datetimepicker({
+				inline: true,
+			});
+		});
+		
+		$(document).ready(function(){
+			$(".booking-calender .fa.fa-clock-o").removeClass(this);
+			$(".booking-calender .fa.fa-clock-o").addClass('fa-clock');
+		});
+	</script>
+	<script>
+		jQuery(document).ready(function(){
+			setTimeout(function(){
+				dezSettingsOptions.version = 'dark';
+				new dezSettings(dezSettingsOptions);
+			},1500)
+		});
+	</script>
+</body>
+</html>
