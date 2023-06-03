@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as ApexCharts from 'apexcharts';
 
+import { RoomService } from '../services/room.service';
+
 
 
 @Component({
@@ -9,7 +11,7 @@ import * as ApexCharts from 'apexcharts';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
-  constructor(){}
+  constructor(private roomService:RoomService){}
   ngOnInit():void{
     var radialChart = function(){
       var options = {

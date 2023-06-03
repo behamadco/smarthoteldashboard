@@ -1,84 +1,61 @@
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Observable, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
+
 import { AppSetting } from "../configuration/config";
 import { Room } from "../models/Room";
+import { IRoom } from "../interfaces/room.interface";
 
-export class RoomService{
+@Injectable({
+  providedIn: 'root'
+})
+export class RoomService {
     private url = AppSetting.serverUrl;
     private _token: any;
     private _uuid: any;
+    private headers:any;
 
-    private _allRooms = [];
-
-    constructor(){
+    constructor(private http: HttpClient){
         this._token = localStorage.getItem("authToken");
         this._uuid = localStorage.getItem("useruuid");
+        this.headers = new HttpHeaders({
+            "Content-Type": "application/json",
+            "Authorization": "Token " + this._token,
+        });
     }
 
-    createRoom(roomNumber: any,floorNumber:any,cost:any,roomTypeId:any){
+    createRoom(roomNumber: any,floorNumber:any,cost:any,roomTypeId:any):Observable<any>{
         var path = "/api/room/createRoom";
-        
-        var httpClient = new XMLHttpRequest();
-
-        return new Promise((resolve,reject)=>{
-            httpClient.onreadystatechange = function(){
-                if(this.readyState==4 && this.status==200){
-                    resolve(JSON.parse(this.response));
-                }
-            }
-
-            var body = {
-                "roomnumber":roomNumber,
-                "floornumber":floorNumber,
-                "cost":cost,
-                "roomtypeid":roomTypeId,
-                "useruuid":this._uuid
-            }
-
-            httpClient.open("POST",this.url+path,true);
-            httpClient.setRequestHeader("Content-Type","application/json");
-            httpClient.setRequestHeader("Authorization","Token "+this._token);
-            httpClient.send(JSON.stringify(body));
-        });
+        var body = {
+            "roomnumber":roomNumber,
+            "floornumber":floorNumber,
+            "cost":cost,
+            "roomtypeid":roomTypeId,
+            "useruuid":this._uuid
+        };
+        return this.http.post<any>(this.url+path, body,{headers:this.headers});
     }
 
-    deleteRoom(room:Room){
+    deleteRoom(room:IRoom):Observable<any>{
         var path = "/api/room/deleteRoom";
-        
-        var httpClient = new XMLHttpRequest();
-
-        return new Promise((resolve,reject)=>{
-            httpClient.onreadystatechange = function(){
-                if(this.readyState==4 && this.status==200){
-                    resolve(JSON.parse(this.response));
-                }
-            }
-
-            var body = {
-                "roomid":room.getID(),
-                "useruuid":this._uuid
-            }
-
-            httpClient.open("POST",this.url+path,true);
-            httpClient.setRequestHeader("Content-Type","application/json");
-            httpClient.setRequestHeader("Authorization","Token "+this._token);
-            httpClient.send(JSON.stringify(body));
-        });
+        var body = {
+            "roomid":room.id,
+            "useruuid":this._uuid
+        };
+        return this.http.post<any>(this.url+path, body, {headers:this.headers});
     }
 
-    getAllRooms(){
+    getAllRooms():Observable<any>{
         var path = "/api/room/getAllRooms";
-        
-        var httpClient = new XMLHttpRequest();
+        return this.http.post<any>(this.url+path,{headers:this.headers});
+    }
 
-        return new Promise((resolve,reject)=>{
-            httpClient.onreadystatechange = function(){
-                if(this.readyState==4 && this.status==200){
-                    resolve(JSON.parse(this.response));
-                }
-            }
-
-            httpClient.open("POST",this.url+path,true);
-            httpClient.setRequestHeader("Content-Type","application/json");
-            httpClient.setRequestHeader("Authorization","Token "+this._token);
-        });
+    getRoom(rooomId:number):Observable<any>{
+        var path = "/api/room/getRoom";
+        var body = {
+            "roomid":rooomId
+        };
+        return this.http.post<any>(this.url+path,{headers: this.headers})
     }
 }
