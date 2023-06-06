@@ -13,31 +13,32 @@ import { RoomService } from '../services/room.service';
 export class DashboardComponent {
   constructor(private roomService:RoomService){}
   ngOnInit():void{
-    var radialChart = function(){
-      var options = {
-        series: [0],
-        chart: {
-        height: 150,
-        type: 'radialBar',
-        sparkline:{
-          enabled:true
-        }
-      },
-      plotOptions: {
-        radialBar: {
-        hollow: {
-          size: '35%',
-        },
-        dataLabels: {
-                show: false,
-        }
-        },
-      },
-      labels: [''],
-      };
-      var chart = new ApexCharts(document.querySelector("#radialChart"), options);
-      chart.render();
-    }
-    radialChart();
+    this.roomService.getAllRooms().subscribe(data=>console.log(data));
+    // var radialChart = function(){
+    //   var options = {
+    //     series: [0],
+    //     chart: {
+    //     height: 150,
+    //     type: 'radialBar',
+    //     sparkline:{
+    //       enabled:true
+    //     }
+    //   },
+    //   plotOptions: {
+    //     radialBar: {
+    //     hollow: {
+    //       size: '35%',
+    //     },
+    //     dataLabels: {
+    //             show: false,
+    //     }
+    //     },
+    //   },
+    //   labels: [''],
+    //   };
+    //   var chart = new ApexCharts(document.querySelector("#radialChart"), options);
+    //   chart.render();
+    // }
+    // radialChart();
   }
 }
