@@ -4,5 +4,5 @@ export interface IRoom{
     floor: number;
     cost: number;
     type: string;
-    reservation: string;
+    reservation: boolean;
 }

@@ -1,0 +1,42 @@
+<div class="content-body">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12 col-xxl-12">
+                <div class="card">
+                    <div class="card-header border-0">
+                        <div class="row detail-item-row">
+                            <div class="col-sm-6">
+                                <div class="detail-item">
+                                    <span>قیمت اتاق: </span>
+                                    <span>{{ room.cost }}</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="detail-item">
+                                    <span>وضعیت اتاق: </span>
+                                    <span [ngClass]="room.reservation ? 'available-item' : ''">{{ rservationStatus }}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row detail-item-row">
+                            <div class="col-sm-6">
+                                <div class="detail-item">
+                                    <span>شماره اتاق: </span>
+                                    <span>{{ room.number }}</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="detail-item">
+                                    <span>شماره طبقه: </span>
+                                    <span>{{ room.floor }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

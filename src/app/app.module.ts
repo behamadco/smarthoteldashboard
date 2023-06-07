@@ -10,6 +10,8 @@ import { FooterComponent } from './footer/footer.component';
 import { AuthComponent } from './auth/auth.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { HttpClientModule } from '@angular/common/http';
+import { RoomComponent } from './room/room.component';
+import { RoomDetailComponent } from './room-detail/room-detail.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { HttpClientModule } from '@angular/common/http';
     DashboardComponent,
     HeaderComponent,
     FooterComponent,
-    AuthComponent
+    AuthComponent,
+    RoomComponent,
+    RoomDetailComponent
   ],
   imports: [
     BrowserModule,

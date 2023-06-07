@@ -1,0 +1,10 @@
+.detail-item-row{
+    width: 100%;
+    text-align: center;
+    font-size: initial;
+    flex-direction: row-reverse;
+}
+
+.available-item{
+    color: green;
+}

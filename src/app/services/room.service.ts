@@ -4,7 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
 import { AppSetting } from "../configuration/config";
-import { Room } from "../models/Room";
+import { RoomModel } from '../models/room.mode';
 import { IRoom } from "../interfaces/room.interface";
 
 @Injectable({
