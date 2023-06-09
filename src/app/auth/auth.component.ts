@@ -14,8 +14,6 @@ export class AuthComponent {
     this._authService.login("admin","bech107017").subscribe(data=>{
       var status = data["status"];
       var userData = data['data'];
-      
-    
     });
   }
 }

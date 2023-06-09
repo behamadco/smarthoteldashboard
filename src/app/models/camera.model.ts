@@ -4,14 +4,6 @@ export class CameraModel{
     _ip:string="";
     _location:string="";
 
-    setID(id:number){this._id=id}
-
-    setName(name:string){this._name=name}
-
-    setIP(ip:string){this._ip=ip}
-
-    setLocation(location:string){this._location=location}
-
     getID(){return this._id}
 
     getName(){return this._name}

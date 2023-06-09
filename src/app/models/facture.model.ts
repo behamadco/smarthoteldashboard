@@ -27,7 +27,7 @@ export class FactureModel{
         this._cost = factureParameters["cost"];
         this._timestamp = factureParameters["timestamp"];
 
-        let itemAsArray:ItemModel[] = Array.from(factureParameters["items"]);
+        let itemAsArray:any = Array.from(factureParameters["items"]);
         for(var index=0;index<itemAsArray.length;index++){
             let item:ItemModel = new ItemModel();
             item.fromString(itemAsArray[index]);

@@ -20,7 +20,7 @@ export class RoomDetailComponent {
     rservationStatus:string = this.room.reservation ? "در دسترس" : "رزرو شده";
 
     constructor(){}
-    
+
     ngOnInit(){
 
     }

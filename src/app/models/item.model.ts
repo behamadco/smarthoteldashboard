@@ -4,14 +4,6 @@ export class ItemModel{
     _cost:number=0;
     _inventory:number=0;
 
-    setID(id:number){this._id = id}
-
-    setTitle(title:string){this._title = title}
-
-    setCost(cost:number){this._cost = cost}
-
-    setInventory(inventory:number){this._inventory = inventory}
-
     getID(){return this._id}
 
     getTitle(){return this._title}

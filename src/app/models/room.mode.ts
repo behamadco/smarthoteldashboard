@@ -8,16 +8,6 @@ export class RoomModel{
     _type:string="";
     _reservation:boolean=false;
 
-    setID(id:number){this._id=id}
-
-    setNumber(number:number){this._number=number}
-
-    setCost(cost:number){this._cost=cost}
-
-    setType(type:string){this._type=type}
-
-    setReservation(reservation:boolean){this._reservation=reservation}
-
     getID(){return this._id}
 
     getNumber(){return this._number}
