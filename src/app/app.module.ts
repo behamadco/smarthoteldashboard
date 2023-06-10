@@ -12,6 +12,11 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { HttpClientModule } from '@angular/common/http';
 import { RoomComponent } from './room/room.component';
 import { RoomDetailComponent } from './room-detail/room-detail.component';
+import { FormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
+import { NoopAnimationPlayer } from '@angular/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -28,7 +33,10 @@ import { RoomDetailComponent } from './room-detail/room-detail.component';
     BrowserModule,
     AppRoutingModule,
     NgApexchartsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),    
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,5 @@
-<!-- <app-header></app-header>
-<app-sidebar></app-sidebar>
-<app-footer></app-footer> -->
+<app-header *ngIf="showHead"></app-header>
+<app-sidebar *ngIf="showHead"></app-sidebar>
+<app-footer *ngIf="showHead"></app-footer>
 
 <router-outlet></router-outlet>
