@@ -26,10 +26,6 @@ export class TravelerModel{
 
     getLodging(){return this._lodging}
 
-    getCompanions(){return this._companions}
-
-    getRoom(){return this._room}
-
     fromString(travelerParameter:any){
         this._id = travelerParameter['id'];
         this._firstName = travelerParameter["firstName"];
@@ -38,14 +34,6 @@ export class TravelerModel{
         this._nationalCode = travelerParameter["nationalCode"];
         this._status = travelerParameter["status"];
         this._lodging = travelerParameter["lodging"];
-        this._room = new RoomModel();
-        this._room.fromString(travelerParameter["room"]);
         
-        var companionAsArray = Array.from(travelerParameter["companions"]);
-        for(var index=0;index<companionAsArray.length;index++){
-            let companion:CompanionModel = new CompanionModel();
-            companion.fromString(companionAsArray[index]);
-            this._companions.push(companion);
-        }
     }
 }

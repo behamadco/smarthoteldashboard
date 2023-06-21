@@ -7,6 +7,7 @@ export class RoomModel{
     _cost:number=0;
     _type:string="";
     _reservation:boolean=false;
+    _status:string="";
 
     getID(){return this._id}
 
@@ -18,13 +19,16 @@ export class RoomModel{
 
     getReservation(){return this._reservation}
 
+    getStatus(){ return this._status }
+
     fromString(roomParameters:any){
         this._id = roomParameters["id"];
         this._number = roomParameters["number"];
         this._floor = new FloorModel();
         this._floor.fromString(roomParameters["floor"]);
         this._cost = roomParameters["cost"];
-        this._type = roomParameters["type"];
+        this._type = roomParameters["roomType"];
         this._reservation = roomParameters["reservation"];
+        this._status = roomParameters["status"];
     }
 }

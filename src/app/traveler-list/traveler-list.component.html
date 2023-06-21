@@ -6,16 +6,16 @@
                     <div class="card-tabs mt-3 mt-sm-0 mb-xxl-0 mb-4">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="tab" href="" (click)="fliterList('lodging')" role="tab">اسکان ({{ lodgingRooms.length }})</a>
+                                <a class="nav-link" data-bs-toggle="tab" href="" (click)="filterList('CHECKOUT')" role="tab">تسویه ({{ checkoutTraveler.length }})</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="tab" href="" (click)="fliterList('reserved')" role="tab">رزرو شده ({{ reservedRooms.length }})</a>
+                                <a class="nav-link" data-bs-toggle="tab" href="" (click)="filterList('RESERVE')" role="tab">رزرو ({{ reservedTraveler.length }})</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="tab" href="" (click)="fliterList('available')" role="tab">در دسترس ({{ availableRooms.length }})</a>
+                                <a class="nav-link" data-bs-toggle="tab" href="" (click)="filterList('LODGING')" role="tab">اسکان ({{ lodgingTraveler.length }})</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" data-bs-toggle="tab" href="" (click)="fliterList('all')" role="tab">تمامی اتاق ها ({{ allRooms.length }})</a>
+                                <a class="nav-link active" data-bs-toggle="tab" href="" (click)="filterList('all')" role="tab">تمامی مسافرین ({{ allTraveler.length }})</a>
                             </li>
                         </ul>
                     </div>
@@ -29,7 +29,7 @@
                     <a href="javascript:void(0);" class="btn btn-primary mb-xxl-0 mb-4"><i class="far fa-file-word me-2"></i>خروجی اکسل</a>
                 </div>
                 <div class="tab-content">	
-                    <div [ngClass]="showAllRooms ? 'tab-pane show active' : 'tab-pane show'" id="all">
+                    <div [ngClass]="showAllTraveler ? 'tab-pane show active' : 'tab-pane show'" id="all">
                         <div class="table-responsive" style="direction: rtl; text-align: center;">
                             <table class="table card-table  display mb-4 dataTablesCard booking-table room-list-tbl table-responsive-lg " id="guestTable-all">
                                 <thead>
@@ -39,16 +39,16 @@
                                               <input class="form-check-input" type="checkbox" value="" id="checkAll">
                                             </div>
                                         </th>
-                                        <th>نام اتاق</th>
-                                        <th>نوع اتاق</th>
-                                        <th>طبقه</th>
-                                        <th>توضیحات</th>
-                                        <th>وضعیت</th>
+                                        <th>نام و نام خانوادگی</th>
+                                        <th>شماره تلفن</th>
+                                        <th>کدملی</th>
+                                        <th>وضعیت اقامت</th>
+                                        <th>وضعیت مسافر</th>
                                         <th class="bg-none"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let room in allRooms">
+                                    <tr *ngFor="let traveler in allTraveler">
                                         <td>
                                             <div class="form-check style-1">
                                               <input class="form-check-input" type="checkbox" value="">
@@ -57,29 +57,31 @@
                                         <td>
                                             <div class="guest-bx">
                                                 <div>
-                                                    <h4 class="mb-0 mt-1"><a class="text-black" href="guest-detail.html">{{ room.getName() }}</a></h4>
+                                                    <h4 class="mb-0 mt-1"><a class="text-black" href="guest-detail.html">{{ traveler.getFirstName() }} {{ traveler.getLastName() }}</a></h4>
                                                 </div>
                                             </div>
                                         </td>
                                         <td>
                                             <div>
-                                                <span class="fs-16">{{ room.getType() }}</span>
+                                                <span class="fs-16">{{ traveler.getPhoneNumber() }}</span>
                                             </div>
                                         </td>
                                         <td>
                                             <div>
-                                                <span class="fs-16">{{ room.getFloor().number }}</span>
+                                                <span class="fs-16">{{ traveler.getNationalCode() }}</span>
                                             </div>
                                         </td>
                                         <td>
-                                            <div>
-                                                
-                                                <span class="fs-16"></span>
+                                            <div [ngSwitch]="traveler.getLodging()">
+                                                <span class="fs-16" *ngSwitchCase="'LODGING'">اسکان</span>
+                                                <span class="fs-16" *ngSwitchCase="'RESERVE'">رزرو</span>
+                                                <span class="fs-16" *ngSwitchCase="'CHECKOUT'">تسویه</span>
                                             </div>
                                         </td>
                                         <td>
-                                            <div>
-                                                <span class="d-block">{{ room.getReservation ? 'رزرو' : 'موجود'}}</span>
+                                            <div [ngSwitch]="traveler.status()">
+                                                <span class="d-block" *ngSwitchCase="'REPORT'" style="color: red;">گزارش شده</span>
+                                                <span class="d-block" *ngSwitchCase="'NORMAL'">عادی</span>
                                             </div>
                                         </td>
                                         <!-- <td>
@@ -102,7 +104,7 @@
                             </table>
                         </div>
                     </div>
-                    <div [ngClass]="showAvailableRoom ? 'tab-pane show active' : 'tab-pane show'" id="available">
+                    <div [ngClass]="shwoLodgingTraveler ? 'tab-pane show active' : 'tab-pane show'" id="lodging">
                         <div class="table-responsive" style="direction: rtl; text-align: center;">
                             <table class="table card-table  display mb-4 dataTablesCard booking-table room-list-tbl table-responsive-lg " id="guestTable-all">
                                 <thead>
@@ -112,16 +114,16 @@
                                               <input class="form-check-input" type="checkbox" value="" id="checkAll">
                                             </div>
                                         </th>
-                                        <th>نام اتاق</th>
-                                        <th>نوع اتاق</th>
-                                        <th>طبقه</th>
-                                        <th>توضیحات</th>
-                                        <th>وضعیت</th>
+                                        <th>نام و نام خانوادگی</th>
+                                        <th>شماره تلفن</th>
+                                        <th>کدملی</th>
+                                        <th>وضعیت اقامت</th>
+                                        <th>وضعیت مسافر</th>
                                         <th class="bg-none"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let room in availableRooms">
+                                    <tr *ngFor="let traveler in lodgingTraveler">
                                         <td>
                                             <div class="form-check style-1">
                                               <input class="form-check-input" type="checkbox" value="">
@@ -130,29 +132,31 @@
                                         <td>
                                             <div class="guest-bx">
                                                 <div>
-                                                    <h4 class="mb-0 mt-1"><a class="text-black" href="guest-detail.html">{{ room.getName() }}</a></h4>
+                                                    <h4 class="mb-0 mt-1"><a class="text-black" href="guest-detail.html">{{ traveler.getFirstName() }} {{ traveler.getLastName() }}</a></h4>
                                                 </div>
                                             </div>
                                         </td>
                                         <td>
                                             <div>
-                                                <span class="fs-16">{{ room.getType() }}</span>
+                                                <span class="fs-16">{{ traveler.getPhoneNumber() }}</span>
                                             </div>
                                         </td>
                                         <td>
                                             <div>
-                                                <span class="fs-16">{{ room.getFloor().number }}</span>
+                                                <span class="fs-16">{{ traveler.getNationalCode() }}</span>
                                             </div>
                                         </td>
                                         <td>
-                                            <div>
-                                                
-                                                <span class="fs-16"></span>
+                                            <div [ngSwitch]="traveler.getLodging()">
+                                                <span class="fs-16" *ngSwitchCase="'LODGING'">اسکان</span>
+                                                <span class="fs-16" *ngSwitchCase="'RESERVE'">رزرو</span>
+                                                <span class="fs-16" *ngSwitchCase="'CHECKOUT'">تسویه</span>
                                             </div>
                                         </td>
                                         <td>
-                                            <div>
-                                                <span class="d-block">{{ room.getReservation ? 'رزرو' : 'موجود'}}</span>
+                                            <div [ngSwitch]="traveler.status()">
+                                                <span class="d-block" *ngSwitchCase="'REPORT'" style="color: red;">گزارش شده</span>
+                                                <span class="d-block" *ngSwitchCase="'NORMAL'">عادی</span>
                                             </div>
                                         </td>
                                         <!-- <td>
@@ -175,7 +179,7 @@
                             </table>
                         </div>
                     </div>
-                    <div [ngClass]="showReservedRooms ? 'tab-pane show active' : 'tab-pane show'" id="reserved">
+                    <div [ngClass]="showReservedTraveler ? 'tab-pane show active' : 'tab-pane show'" id="reserved">
                         <div class="table-responsive" style="direction: rtl; text-align: center;">
                             <table class="table card-table  display mb-4 dataTablesCard booking-table room-list-tbl table-responsive-lg " id="guestTable-all">
                                 <thead>
@@ -185,16 +189,16 @@
                                               <input class="form-check-input" type="checkbox" value="" id="checkAll">
                                             </div>
                                         </th>
-                                        <th>نام اتاق</th>
-                                        <th>نوع اتاق</th>
-                                        <th>طبقه</th>
-                                        <th>توضیحات</th>
-                                        <th>وضعیت</th>
+                                        <th>نام و نام خانوادگی</th>
+                                        <th>شماره تلفن</th>
+                                        <th>کدملی</th>
+                                        <th>وضعیت اقامت</th>
+                                        <th>وضعیت مسافر</th>
                                         <th class="bg-none"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let room in reservedRooms">
+                                    <tr *ngFor="let traveler in reservedTraveler">
                                         <td>
                                             <div class="form-check style-1">
                                               <input class="form-check-input" type="checkbox" value="">
@@ -203,29 +207,29 @@
                                         <td>
                                             <div class="guest-bx">
                                                 <div>
-                                                    <h4 class="mb-0 mt-1"><a class="text-black" href="guest-detail.html">{{ room.getName() }}</a></h4>
+                                                    <h4 class="mb-0 mt-1"><a class="text-black" href="guest-detail.html">{{ traveler.getFirstName() }} {{ traveler.getLastName() }}</a></h4>
                                                 </div>
                                             </div>
                                         </td>
                                         <td>
                                             <div>
-                                                <span class="fs-16">{{ room.getType() }}</span>
+                                                <span class="fs-16">{{ traveler.getPhoneNumber() }}</span>
                                             </div>
                                         </td>
                                         <td>
                                             <div>
-                                                <span class="fs-16">{{ room.getFloor().number }}</span>
+                                                <span class="fs-16">{{ traveler.getNationalCode() }}</span>
                                             </div>
                                         </td>
                                         <td>
                                             <div>
                                                 
-                                                <span class="fs-16"></span>
+                                                <span class="fs-16" [ngStyle]="{'color':'red'}"></span>
                                             </div>
                                         </td>
                                         <td>
                                             <div>
-                                                <span class="d-block">{{ room.getReservation ? 'رزرو' : 'موجود'}}</span>
+                                                <span class="d-block"></span>
                                             </div>
                                         </td>
                                         <!-- <td>
@@ -248,7 +252,7 @@
                             </table>
                         </div>
                     </div>
-                    <div [ngClass]="showLodging ? 'tab-pane show active' : 'tab-pane show'" id="lodging">
+                    <div [ngClass]="showCheckoutTraveler ? 'tab-pane show active' : 'tab-pane show'" id="lodging">
                         <div class="table-responsive" style="direction: rtl; text-align: center;">
                             <table class="table card-table  display mb-4 dataTablesCard booking-table room-list-tbl table-responsive-lg " id="guestTable-all">
                                 <thead>
@@ -258,16 +262,16 @@
                                               <input class="form-check-input" type="checkbox" value="" id="checkAll">
                                             </div>
                                         </th>
-                                        <th>نام اتاق</th>
-                                        <th>نوع اتاق</th>
-                                        <th>طبقه</th>
-                                        <th>توضیحات</th>
-                                        <th>وضعیت</th>
+                                        <th>نام و نام خانوادگی</th>
+                                        <th>شماره تلفن</th>
+                                        <th>کدملی</th>
+                                        <th>وضعیت اقامت</th>
+                                        <th>وضعیت مسافر</th>
                                         <th class="bg-none"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let room in allRooms">
+                                    <tr *ngFor="let traveler in checkoutTraveler">
                                         <td>
                                             <div class="form-check style-1">
                                               <input class="form-check-input" type="checkbox" value="">
@@ -276,29 +280,31 @@
                                         <td>
                                             <div class="guest-bx">
                                                 <div>
-                                                    <h4 class="mb-0 mt-1"><a class="text-black" href="guest-detail.html">{{ room.getName() }}</a></h4>
+                                                    <h4 class="mb-0 mt-1"><a class="text-black" href="guest-detail.html">{{ traveler.getFirstName() }} {{ traveler.getLastName() }}</a></h4>
                                                 </div>
                                             </div>
                                         </td>
                                         <td>
                                             <div>
-                                                <span class="fs-16">{{ room.getType() }}</span>
+                                                <span class="fs-16">{{ traveler.getPhoneNumber() }}</span>
                                             </div>
                                         </td>
                                         <td>
                                             <div>
-                                                <span class="fs-16">{{ room.getFloor().number }}</span>
+                                                <span class="fs-16">{{ traveler.getNationalCode() }}</span>
                                             </div>
                                         </td>
                                         <td>
-                                            <div>
-                                                
-                                                <span class="fs-16"></span>
+                                            <div [ngSwitch]="traveler.getLodging()">
+                                                <span class="fs-16" *ngSwitchCase="'LODGING'">اسکان</span>
+                                                <span class="fs-16" *ngSwitchCase="'RESERVE'">رزرو</span>
+                                                <span class="fs-16" *ngSwitchCase="'CHECKOUT'">تسویه</span>
                                             </div>
                                         </td>
                                         <td>
-                                            <div>
-                                                <span class="d-block">{{ room.getReservation ? 'رزرو' : 'موجود'}}</span>
+                                            <div [ngSwitch]="traveler.status()">
+                                                <span class="d-block" *ngSwitchCase="'REPORT'" style="color: red;">گزارش شده</span>
+                                                <span class="d-block" *ngSwitchCase="'NORMAL'">عادی</span>
                                             </div>
                                         </td>
                                         <!-- <td>

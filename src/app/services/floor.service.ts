@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { AppSetting } from '../configuration/config';
 import { Observable, throwError } from 'rxjs';
 import { IFloor } from '../interfaces/floor.interface';
+import { FloorModel } from '../models/floor.model';
 
 
 @Injectable({
@@ -24,11 +25,11 @@ export class FloorService {
     }
 
 
-    createFloor(floornumber:number, useruuid:string):Observable<any>{
+    createFloor(floornumber:number):Observable<any>{
       var path = "/api/floor/createFloor";
       var body = {
         "floornumber":floornumber,
-        "useruuid":useruuid,
+        "useruuid":this._uuid,
       };
       return this.http.post<any>(this.url+path,body,{headers:this.headers});
     }
@@ -57,10 +58,10 @@ export class FloorService {
       return this.http.post<any>(this.url+path,{headers:this.headers});
     }
 
-    getFloor(floor:IFloor):Observable<any>{
+    getFloor(floor:FloorModel):Observable<any>{
       var path = "/api/floor/getFloor";
       var body = {
-        "floorid":floor.id
+        "floorid":floor.getID()
       };
       return this.http.post<any>(this.url+path,{headers:this.headers})
     }

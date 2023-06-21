@@ -5,6 +5,9 @@ import { AppSetting } from '../configuration/config';
 import { ICard } from '../interfaces/card.interface';
 import { ITraveler } from '../interfaces/traveler.interface';
 import { ICardCredential } from '../interfaces/cardcredential.interface';
+import { CardModel } from '../models/card.model';
+import { TravelerModel } from '../models/traveler.model';
+import { CardCredentialModel } from '../models/cardcredential.model';
 
 @Injectable({
   providedIn: 'root'
@@ -33,15 +36,15 @@ export class CardService {
       return this.http.post<any>(this.url+path,body,{headers:this.headers});
     }
 
-    deleteCard(card:ICard):Observable<any>{
+    deleteCard(card:CardModel):Observable<any>{
       var path = "/api/card/deleteCard";
       var body = {
-        "cardpk":card.id
+        "cardpk":card.getID()
       };
       return this.http.post<any>(this.url+path,body,{headers:this.headers});
     }
 
-    getCardByID(cardId:string):Observable<any>{
+    getCardByID(cardId:number):Observable<any>{
       var path = "/api/card/getCardByCardId";
       var body = {
         "cardid": cardId
@@ -54,11 +57,11 @@ export class CardService {
       return this.http.post<any>(this.url+path,{headers:this.headers});
     }
 
-    createCardCredential(card:ICard,traveler:ITraveler,startDateandTime:string,endDateAndTime:string):Observable<any>{
+    createCardCredential(card:CardModel,traveler:TravelerModel,startDateandTime:string,endDateAndTime:string):Observable<any>{
       var path = "/api/card/createCardCredential";
       var body = {
-        "cardid":card.id,
-        "travelerid":traveler.id,
+        "cardid":card.getID(),
+        "travelerid":traveler.getID(),
         "startdateandtime":startDateandTime,
         "enddateandtime":endDateAndTime,
         "useruuid":this._uuid
@@ -66,10 +69,10 @@ export class CardService {
       return this.http.post<any>(this.url+path,body,{headers:this.headers});
     }
 
-    deleteCardCredential(cardCredential:ICardCredential):Observable<any>{
+    deleteCardCredential(cardCredential:CardCredentialModel):Observable<any>{
       var path = "/api/card/deleteCardCredential";
       var body = {
-        "credentialid":cardCredential.id,
+        "credentialid":cardCredential.getID(),
         "useruuid": this._uuid
       };
       return this.http.post<any>(this.url+path,body,{headers:this.headers});

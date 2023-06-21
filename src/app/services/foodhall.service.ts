@@ -4,6 +4,7 @@ import { AppSetting } from '../configuration/config';
 import { Observable } from 'rxjs';
 import { IFoodHall } from '../interfaces/foodhall.interface';
 import { IFood } from '../interfaces/food.interface';
+import { FoodHallModel } from '../models/foodhall.model';
 
 @Injectable({
   providedIn: 'root'
@@ -37,9 +38,9 @@ export class FoodhallService {
       return this.http.post(this.url+path,body,{headers:this.headers})
     }
 
-    deleteFoodHall(foodHall:IFoodHall):Observable<any>{
+    deleteFoodHall(foodHall:FoodHallModel):Observable<any>{
       var path = "/api/food/deleteFoodHall";
-      var body = {"foodhallid":foodHall.id,"useruuid":this._uuid};
+      var body = {"foodhallid":foodHall.getID(),"useruuid":this._uuid};
       return this.http.post(this.url+path,body,{headers:this.headers})
     }
 
@@ -56,23 +57,23 @@ export class FoodhallService {
       return this.http.post(this.url+path,body,{headers:this.headers})
     }
 
-    createFood(name:string, cost:number, description:string, foodHall:IFoodHall):Observable<any>{
+    createFood(name:string, cost:number, description:string, foodHall:FoodHallModel):Observable<any>{
       var path ="/api/food/createFood";
       var body = {
         "name":name,
         "cost":cost,
         "description":description,
-        "foodHallId":foodHall.id,
+        "foodHallId":foodHall.getID(),
         "useruuid":this._uuid
       };
       return this.http.post(this.url+path,body,{headers:this.headers})
     }
 
-    deleteFood(food:IFood, foodHall:IFoodHall):Observable<any>{
+    deleteFood(food:IFood, foodHall:FoodHallModel):Observable<any>{
       var path = "/api/food/deleteFood";
       var body = {
         "foodid":food.id,
-        "foodhallid":foodHall.id,
+        "foodhallid":foodHall.getID(),
         "useruuid":this._uuid
       }
       return this.http.post(this.url+path,body,{headers:this.headers})
@@ -86,10 +87,10 @@ export class FoodhallService {
       return this.http.post(this.url+path,body,{headers:this.headers})
     }
 
-    getAllFoods(foodHall:IFoodHall):Observable<any>{
+    getAllFoods(foodHall:FoodHallModel):Observable<any>{
       var path = "/api/food/getFood";
       var body = {
-        "foodhallid":foodHall.id
+        "foodhallid":foodHall.getID()
       }
       return this.http.post(this.url+path,body,{headers:this.headers})
     }

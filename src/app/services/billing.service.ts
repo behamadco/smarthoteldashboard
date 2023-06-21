@@ -6,6 +6,8 @@ import { IRoom } from '../interfaces/room.interface';
 import { ITraveler } from '../interfaces/traveler.interface';
 import { IBill } from '../interfaces/billing.interface';
 import { IFacture } from '../interfaces/facture.interface';
+import { RoomModel } from '../models/room.mode';
+import { BillingModel } from '../models/billing.model';
 
 @Injectable({
   providedIn: 'root'
@@ -27,10 +29,10 @@ export class BillingService {
     }
 
 
-    createBillForRoom(room:IRoom, traveler:ITraveler):Observable<any>{
+    createBillForRoom(room:RoomModel, traveler:ITraveler):Observable<any>{
       var path = "/api/billing/createBillForRoom";
       var body = {
-        "roomid":room.id,
+        "roomid":room.getID(),
         "travelerid":traveler.id,
         "uuid":this._uuid
       }
@@ -38,20 +40,20 @@ export class BillingService {
     }
 
 
-    addFactureToBill(bill:IBill, facture:IFacture):Observable<any>{
+    addFactureToBill(bill:BillingModel, facture:IFacture):Observable<any>{
       var path = "/api/billing/addFactureToBill";
       var body = {
-        "billid":bill.id,
+        "billid":bill.getID(),
         "factureid":facture.id,
         "useruuid":this._uuid
       }
       return this.http.post<any>(this.url+path,body,{headers:this.headers});
     }
 
-    changeBillStatus(bill:IBill, status:string):Observable<any>{
+    changeBillStatus(bill:BillingModel, status:string):Observable<any>{
       var path = "/api/billing/changeBillStatus";
       var body = {
-        "billid":bill.id,
+        "billid":bill.getID(),
         "newstatus":status,
         "useruuid":this._uuid
       }

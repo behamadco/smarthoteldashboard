@@ -3,6 +3,8 @@ import * as ApexCharts from 'apexcharts';
 
 import { RoomService } from '../services/room.service';
 import { RoomModel } from '../models/room.mode';
+import { ResidenceService } from '../services/residence.service';
+import { ResidenceModel } from '../models/residence.model';
 
 
 
@@ -17,7 +19,15 @@ export class DashboardComponent {
   availableRooms: RoomModel[] = [];
   reservedRooms: RoomModel[] = [];
 
-  constructor(private roomService:RoomService){}
+  allResidencies : ResidenceModel[] = [];
+  checkInResidencies : ResidenceModel[] = [];
+  checkoutResidencies: ResidenceModel[] = [];
+
+  availableInPercent:any;
+  reservedInPercent:any;
+
+
+  constructor(private roomService:RoomService, private residenceService: ResidenceService){}
   ngOnInit():void{
     this.roomService.getAllRooms().subscribe(getRoomData=>{
       var status = getRoomData["status"];
@@ -34,9 +44,32 @@ export class DashboardComponent {
           if(data[index]["status"]=="RESERVE"){ this.reservedRooms.push(room) }
         }
 
-        console.log(this.availableRooms, this.lodgingRooms, this.reservedRooms);
+        this.availableInPercent = (this.availableRooms.length/this.allRooms.length)*100 + "%";
+        this.reservedInPercent = (this.reservedRooms.length/this.allRooms.length)*100 + "%";
       }
     });
+
+    this.residenceService.getAllResidences().subscribe(getResidenceData=>{
+      console.log(getResidenceData);
+      var status = getResidenceData["status"];
+      if(status){
+        var data = getResidenceData["data"];
+        for(var index=0;index<data.length;index++){
+          var residence:ResidenceModel = new ResidenceModel();
+          residence.fromString(data[index]);
+
+          this.allResidencies.push(residence);
+          
+          if(residence.getStatus()=="CHECKIN"){ this.checkInResidencies.push(residence) }
+          if(residence.getStatus()=="CHECKOUT"){ this.checkoutResidencies.push(residence) }
+
+          console.log(this.checkInResidencies, this.checkoutResidencies);
+
+        }
+      }
+    });
+
+
     // var radialChart = function(){
     //   var options = {
     //     series: [0],

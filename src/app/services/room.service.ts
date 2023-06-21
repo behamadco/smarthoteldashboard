@@ -12,17 +12,16 @@ import { IRoom } from "../interfaces/room.interface";
 })
 export class RoomService {
     private url = AppSetting.serverUrl;
-    private _token: any;
-    private _uuid: any;
+    private _token: any=localStorage.getItem("authToken");
+    private _uuid: any=localStorage.getItem("useruuid");
     private headers:any;
+    // private headers:any=new HttpHeaders({
+    //     "Content-Type": "application/json",
+    //     "Authorization": "Token " + this._token,
+    // });
 
     constructor(private http: HttpClient){
-        this._token = localStorage.getItem("authToken");
-        this._uuid = localStorage.getItem("useruuid");
-        this.headers = new HttpHeaders({
-            "Content-Type": "application/json",
-            "Authorization": "Token " + this._token,
-        });
+      this.headers = new HttpHeaders().append('Content-Type','application/json').append('Authorization','Token '+this._token)
     }
 
     createRoom(roomNumber: any,floorNumber:any,cost:any,roomTypeId:any):Observable<any>{
@@ -37,10 +36,10 @@ export class RoomService {
         return this.http.post<any>(this.url+path, body,{headers:this.headers});
     }
 
-    deleteRoom(room:IRoom):Observable<any>{
+    deleteRoom(room:RoomModel):Observable<any>{
         var path = "/api/room/deleteRoom";
         var body = {
-            "roomid":room.id,
+            "roomid":room.getID(),
             "useruuid":this._uuid
         };
         return this.http.post<any>(this.url+path, body, {headers:this.headers});
@@ -48,7 +47,7 @@ export class RoomService {
 
     getAllRooms():Observable<any>{
         var path = "/api/room/getAllRooms";
-        return this.http.post<any>(this.url+path,{headers:this.headers});
+        return this.http.post<any>(this.url+path, {}, {headers:this.headers});
     }
 
     getRoom(rooomId:number):Observable<any>{
@@ -56,6 +55,6 @@ export class RoomService {
         var body = {
             "roomid":rooomId
         };
-        return this.http.post<any>(this.url+path,{headers: this.headers})
+        return this.http.post<any>(this.url+path,body,{headers: this.headers})
     }
 }

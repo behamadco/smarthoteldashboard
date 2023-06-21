@@ -4,10 +4,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthComponent } from './auth/auth.component';
 import { RoomComponent } from './room/room.component';
 import { RoomDetailComponent } from './room-detail/room-detail.component';
+import { TravelerListComponent } from './traveler-list/traveler-list.component';
 
 const routes: Routes = [
   {
-    path: "", redirectTo:'dashboard', pathMatch:'full'
+    path: "", redirectTo:'auth', pathMatch:'full'
   },
   {
     path: "dashboard", component: DashboardComponent
@@ -20,6 +21,9 @@ const routes: Routes = [
   },
   {
     path: "room-detail", component: RoomDetailComponent
+  },
+  {
+    path: "travelers", component: TravelerListComponent
   }
 ];
 

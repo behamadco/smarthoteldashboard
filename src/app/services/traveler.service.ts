@@ -3,6 +3,7 @@ import { AppSetting } from '../configuration/config';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from "rxjs";
 import { ITraveler } from '../interfaces/traveler.interface';
+import { TravelerModel } from '../models/traveler.model';
 
 @Injectable({
   providedIn: 'root'
@@ -64,10 +65,10 @@ export class TravelerService {
       return this.http.post<any>(this.url+path,body,{headers:this.headers});
     }
 
-    changeTravelerStatus(traveler:ITraveler,status:string):Observable<any>{
+    changeTravelerStatus(traveler:TravelerModel,status:string):Observable<any>{
       var path = "/api/traveler/changeTravelerStatus";
       var body = {
-        "travelerid":traveler.id,
+        "travelerid":traveler.getID(),
         "status":status
       }
       return this.http.post<any>(this.url+path,body,{headers:this.headers});

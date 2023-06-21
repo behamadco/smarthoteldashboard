@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { NoopAnimationPlayer } from '@angular/animations';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TravelerListComponent } from './traveler-list/traveler-list.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FooterComponent,
     AuthComponent,
     RoomComponent,
-    RoomDetailComponent
+    RoomDetailComponent,
+    TravelerListComponent
   ],
   imports: [
     BrowserModule,

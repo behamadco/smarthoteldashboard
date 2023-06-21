@@ -5,6 +5,9 @@ import { AppSetting } from '../configuration/config';
 import { IReader } from '../interfaces/reader.interface';
 import { ICard } from '../interfaces/card.interface';
 import { IRoom } from '../interfaces/room.interface';
+import { CardModel } from '../models/card.model';
+import { ReaderModel } from '../models/reader.model';
+import { RoomModel } from '../models/room.mode';
 
 @Injectable({
   providedIn: 'root'
@@ -25,30 +28,30 @@ export class ReaderService {
       });
     }
 
-    createReader(roomNumber:number, macAddress:string, card:ICard, supportCard:ICard):Observable<any>{
+    createReader(roomNumber:number, macAddress:string, card:CardModel, supportCard:CardModel):Observable<any>{
       var path = "/api/reader/createReader";
       var body = {
         "roomnumber":roomNumber,
         "macaddress":macAddress,
-        "cardid":card.id,
-        "supportcardid":supportCard.id,
+        "cardid":card.getID(),
+        "supportcardid":supportCard.getID(),
         "useruuid":this._uuid
       };
       return this.http.post(this.url+path,body,{headers:this.headers});
     }
 
-    deleteReader(reader:IReader):Observable<any>{
+    deleteReader(reader:ReaderModel):Observable<any>{
       var path = "/api/reader/deleteReader";
       var body = {
-        "readerid":reader.id
+        "readerid":reader.getID()
       };
       return this.http.post(this.url+path,body,{headers:this.headers});
     }
 
-    getReaderByRoom(room:IRoom):Observable<any>{
+    getReaderByRoom(room:RoomModel):Observable<any>{
       var path = "/api/reader/getReaderByRoom";
       var body = {
-        "roomid":room.id
+        "roomid":room.getID()
       }
       return this.http.post(this.url+path,body,{headers:this.headers});
     }
@@ -82,6 +85,4 @@ export class ReaderService {
       }
       return this.http.post(this.url+path,body,{headers:this.headers});
     }
-
-    
 }
