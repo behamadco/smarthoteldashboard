@@ -31,9 +31,9 @@ export class TravelerListComponent {
 
         this.allTraveler.push(traveler);
 
-        if(data[index]=="LODGING"){ this.lodgingTraveler.push(traveler) }
-        if(data[index]=="RESERVE"){ this.reservedTraveler.push(traveler) }
-        if(data[index]=="CHECKOUT"){ this.checkoutTraveler.push(traveler) }
+        if(data[index]["lodging"]=="LODGING"){ this.lodgingTraveler.push(traveler) }
+        if(data[index]["lodging"]=="RESERVE"){ this.reservedTraveler.push(traveler) }
+        if(data[index]["lodging"]=="CHECKOUT"){ this.checkoutTraveler.push(traveler) }
       }
     });
   }
@@ -67,5 +67,4 @@ export class TravelerListComponent {
       this.showCheckoutTraveler = true;
     }
   }
-
 }

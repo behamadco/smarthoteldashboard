@@ -1,0 +1,20 @@
+.search-div{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.search-div input{
+    direction: rtl;
+    text-align: start;
+    border-top-right-radius: 30px !important;
+    border-bottom-right-radius: 30px !important;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.search-div span{
+    border-top-left-radius: 30px !important;
+    border-bottom-left-radius: 30px !important;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}

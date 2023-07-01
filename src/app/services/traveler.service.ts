@@ -10,18 +10,13 @@ import { TravelerModel } from '../models/traveler.model';
 })
 export class TravelerService {
 
-  private url = AppSetting.serverUrl;
-    private _token: any;
-    private _uuid: any;
+    private url = AppSetting.serverUrl;
+    private _token: any=localStorage.getItem("authToken");
+    private _uuid: any=localStorage.getItem("useruuid");
     private headers:any;
 
     constructor(private http: HttpClient){
-        this._token = localStorage.getItem("authToken");
-        this._uuid = localStorage.getItem("useruuid");
-        this.headers = new HttpHeaders({
-            "Content-Type": "application/json",
-            "Authorization": "Token " + this._token,
-        });
+        this.headers = new HttpHeaders().append('Content-Type','application/json').append('Authorization','Token '+this._token)
     }
 
     createTraveler(firstName:string, lastName:string, phoneNumber:string, nationalCode: string):Observable<any>{
@@ -54,7 +49,7 @@ export class TravelerService {
 
     getAllTravelers():Observable<any>{
       var path = "/api/traveler/getAllTravelers";
-      return this.http.post<any>(this.url+path,{headers:this.headers});
+      return this.http.post<any>(this.url+path,{},{headers:this.headers});
     }
 
     getAllTravelersByStatus(status:string):Observable<any>{

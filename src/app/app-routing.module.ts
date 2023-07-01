@@ -5,6 +5,7 @@ import { AuthComponent } from './auth/auth.component';
 import { RoomComponent } from './room/room.component';
 import { RoomDetailComponent } from './room-detail/room-detail.component';
 import { TravelerListComponent } from './traveler-list/traveler-list.component';
+import { TravelerDetailComponent } from './traveler-detail/traveler-detail.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,9 @@ const routes: Routes = [
   },
   {
     path: "travelers", component: TravelerListComponent
+  },
+  {
+    path: "traveler-detail", component: TravelerDetailComponent
   }
 ];
 

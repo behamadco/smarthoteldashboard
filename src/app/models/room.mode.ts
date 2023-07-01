@@ -13,6 +13,8 @@ export class RoomModel{
 
     getNumber(){return this._number}
 
+    getFloor(){return this._floor}
+
     getCost(){return this._cost}
 
     getType(){return this._type}
