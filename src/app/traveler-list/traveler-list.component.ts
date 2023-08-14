@@ -25,6 +25,7 @@ export class TravelerListComponent {
     this._travelerService.getAllTravelers().subscribe(getTravelersData=>{
       var status = getTravelersData["status"];
       var data = getTravelersData["data"];
+      console.log(data);
       for(var index=0;index<data.length;index++){
         var traveler:TravelerModel = new TravelerModel();
         traveler.fromString(data[index]);

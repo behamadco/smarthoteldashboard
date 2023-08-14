@@ -28,6 +28,7 @@ export class RoomComponent {
         var status = getRoomData["status"];
         if(status){
           var data = getRoomData["data"];
+          console.log(data);
           for(var index=0;index<data.length;index++){
             var room:RoomModel = new RoomModel();
             room.fromString(data[index]);

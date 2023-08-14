@@ -8,13 +8,13 @@
                             <div class="col-sm-6">
                                 <div class="detail-item">
                                     <span>قیمت اتاق: </span>
-                                    <span>{{ room.cost }}</span>
+                                    <span>{{ room.getCost() }}</span>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="detail-item">
                                     <span>وضعیت اتاق: </span>
-                                    <span [ngClass]="room.reservation ? 'available-item' : ''">{{ rservationStatus }}</span>
+                                    <span [ngClass]="room.getReservation() ? 'available-item' : ''">{{ reservationStatus }}</span>
                                 </div>
                             </div>
                         </div>
@@ -23,13 +23,13 @@
                             <div class="col-sm-6">
                                 <div class="detail-item">
                                     <span>شماره اتاق: </span>
-                                    <span>{{ room.number }}</span>
+                                    <span>{{ room.getNumber() }}</span>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="detail-item">
                                     <span>شماره طبقه: </span>
-                                    <span>{{ room.floor }}</span>
+                                    <span>{{ room.getFloor().getNumber() }}</span>
                                 </div>
                             </div>
                         </div>

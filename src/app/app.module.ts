@@ -18,6 +18,7 @@ import { NoopAnimationPlayer } from '@angular/animations';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TravelerListComponent } from './traveler-list/traveler-list.component';
 import { TravelerDetailComponent } from './traveler-detail/traveler-detail.component';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({

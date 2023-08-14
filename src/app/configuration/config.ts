@@ -1,6 +1,6 @@
 export class AppSetting{
     //static serverUrl = "localhost";
-    static serverUrl = "http://127.0.0.1";
+    static serverUrl = "http://109.122.199.172:9999";
     
     static toastOptions = {
         positionClass: "toast-top-right",

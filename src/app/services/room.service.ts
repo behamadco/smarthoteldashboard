@@ -50,10 +50,10 @@ export class RoomService {
         return this.http.post<any>(this.url+path, {}, {headers:this.headers});
     }
 
-    getRoom(rooomId:number):Observable<any>{
+    getRoom(roomNumber:number):Observable<any>{
         var path = "/api/room/getRoom";
         var body = {
-            "roomid":rooomId
+            "roomnumber":roomNumber
         };
         return this.http.post<any>(this.url+path,body,{headers: this.headers})
     }
