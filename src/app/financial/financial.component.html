@@ -1,0 +1,207 @@
+<div class="content-body">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="d-flex mb-4 justify-content-between align-items-center flex-wrap" style="flex-direction: row-reverse;">
+                    <div class="card-tabs mt-3 mt-sm-0 mb-xxl-0 mb-4">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link" data-bs-toggle="tab" href="" (click)="filterList('paid')" role="tab">پرداخت شده ({{ paidBills.length }})</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-bs-toggle="tab" href="" (click)="filterList('unpaid')" role="tab">پرداخت نشده ({{ unPaidBills.length }})</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-bs-toggle="tab" href="" (click)="filterList('all')" role="tab">همه ({{ allBills.length }})</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="table-search">	
+                        <div class="input-group search-area search-div">
+                            <input type="text" class="form-control" placeholder="جستجو...">
+                            <span class="input-group-text"><a href="javascript:void(0)"><i
+                                class="flaticon-381-search-2"></i></a></span>
+                        </div>
+                    </div>	
+                    <a href="javascript:void(0);" class="btn btn-primary mb-xxl-0 mb-4"><i class="far fa-file-word me-2"></i>خروجی اکسل</a>
+                </div>
+                <div class="tab-content">	
+                    <div [ngClass]="showAllBills ? 'tab-pane show active' : 'tab-pane show'" id="all">
+                        <div class="table-responsive" style="direction: rtl; text-align: center;">
+                            <table class="table card-table  display mb-4 dataTablesCard booking-table room-list-tbl table-responsive-lg " id="guestTable-all">
+                                <thead>
+                                    <tr>
+                                        <th class="bg-none">
+                                            <div class="form-check style-1">
+                                              <input class="form-check-input" type="checkbox" value="" id="checkAll">
+                                            </div>
+                                        </th>
+                                        <th>شناسه</th>
+                                        <th>مسافر</th>
+                                        <th>مبلغ (ریال)</th>
+                                        <th>تاریخ ایجاد</th>
+                                        <th>وضعیت</th>
+                                        <th class="bg-none"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let bill of allBills">
+                                        <td>
+                                            <div class="form-check style-1">
+                                              <input class="form-check-input" type="checkbox" value="">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <div>
+                                                    <h4 class="mb-0 mt-1"><a [routerLink]="['/bill-detail',{id:bill.getCode()}]" class="text-black">{{ bill.getCode() }}</a></h4>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <span class="fs-16">{{ bill.getTraveler().getFirstName() }} {{  bill.getTraveler().getLastName() }}</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <span class="fs-16">{{ bill.getCost() }}</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                
+                                                <span class="fs-16">{{ toPersianCalendar(bill.getDateAndTime()) }}</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <span class="d-block">{{ getPaymentStatus(bill.getStatus()) }}</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div [ngClass]="showPaidBills ? 'tab-pane show active' : 'tab-pane show'" id="all">
+                        <div class="table-responsive" style="direction: rtl; text-align: center;">
+                            <table class="table card-table  display mb-4 dataTablesCard booking-table room-list-tbl table-responsive-lg " id="guestTable-all">
+                                <thead>
+                                    <tr>
+                                        <th class="bg-none">
+                                            <div class="form-check style-1">
+                                              <input class="form-check-input" type="checkbox" value="" id="checkAll">
+                                            </div>
+                                        </th>
+                                        <th>شناسه</th>
+                                        <th>مسافر</th>
+                                        <th>مبلغ (ریال)</th>
+                                        <th>تاریخ ایجاد</th>
+                                        <th>وضعیت</th>
+                                        <th class="bg-none"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let bill of paidBills">
+                                        <td>
+                                            <div class="form-check style-1">
+                                              <input class="form-check-input" type="checkbox" value="">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <div>
+                                                    <h4 class="mb-0 mt-1"><a [routerLink]="['/bill-detail',{id:bill.getCode()}]" class="text-black">{{ bill.getCode() }}</a></h4>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <span class="fs-16">{{ bill.getTraveler().getFirstName() }} {{  bill.getTraveler().getLastName() }}</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <span class="fs-16">{{ bill.getCost() }}</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                
+                                                <span class="fs-16">{{ toPersianCalendar(bill.getDateAndTime()) }}</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <span class="d-block">{{ getPaymentStatus(bill.getStatus()) }}</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div [ngClass]="showUnPaidBills ? 'tab-pane show active' : 'tab-pane show'" id="all">
+                        <div class="table-responsive" style="direction: rtl; text-align: center;">
+                            <table class="table card-table  display mb-4 dataTablesCard booking-table room-list-tbl table-responsive-lg " id="guestTable-all">
+                                <thead>
+                                    <tr>
+                                        <th class="bg-none">
+                                            <div class="form-check style-1">
+                                              <input class="form-check-input" type="checkbox" value="" id="checkAll">
+                                            </div>
+                                        </th>
+                                        <th>شناسه</th>
+                                        <th>مسافر</th>
+                                        <th>مبلغ (ریال)</th>
+                                        <th>تاریخ ایجاد</th>
+                                        <th>وضعیت</th>
+                                        <th class="bg-none"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let bill of unPaidBills">
+                                        <td>
+                                            <div class="form-check style-1">
+                                              <input class="form-check-input" type="checkbox" value="">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <div>
+                                                    <h4 class="mb-0 mt-1"><a [routerLink]="['/bill-detail',{id:bill.getCode()}]" class="text-black">{{ bill.getCode() }}</a></h4>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <span class="fs-16">{{ bill.getTraveler().getFirstName() }} {{  bill.getTraveler().getLastName() }}</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <span class="fs-16">{{ bill.getCost() }}</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                
+                                                <span class="fs-16">{{ toPersianCalendar(bill.getDateAndTime()) }}</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <span class="d-block">{{ getPaymentStatus(bill.getStatus()) }}</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -8,6 +8,7 @@ import { IBill } from '../interfaces/billing.interface';
 import { IFacture } from '../interfaces/facture.interface';
 import { RoomModel } from '../models/room.mode';
 import { BillingModel } from '../models/billing.model';
+import { TravelerModel } from '../models/traveler.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,17 +16,12 @@ import { BillingModel } from '../models/billing.model';
 export class BillingService {
 
   private url = AppSetting.serverUrl;
-    private _token: any;
-    private _uuid: any;
+    private _token: any = localStorage.getItem("authToken");
+    private _uuid: any = localStorage.getItem("useruuid");
     private headers:any;
 
     constructor(private http: HttpClient){
-      this._token = localStorage.getItem("authToken");
-      this._uuid = localStorage.getItem("useruuid");
-      this.headers = new HttpHeaders({
-          "Content-Type": "application/json",
-          "Authorization": "Token " + this._token,
-      });
+      this.headers = new HttpHeaders().append('Content-Type','application/json').append('Authorization','Token '+this._token)
     }
 
 
@@ -68,8 +64,16 @@ export class BillingService {
       return this.http.post<any>(this.url+path,body,{headers:this.headers});
     }
 
+    getBiilsByTraveler(traveler:TravelerModel):Observable<any>{
+      var path = "/api/billing/getBillsByTraveler";
+      var body = {
+        "travelerid":traveler.getID()
+      };
+      return this.http.post<any>(this.url+path,body,{headers:this.headers});
+    }
+
     getAllBills():Observable<any>{
       var path = "/api/billing/getAllBills";
-      return this.http.post<any>(this.url+path,{headers:this.headers});
+      return this.http.post<any>(this.url+path,{},{headers:this.headers});
     }
 }

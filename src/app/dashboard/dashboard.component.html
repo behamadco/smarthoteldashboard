@@ -82,6 +82,18 @@
             <div class="col-xl-9 col-xxl-8">
                 <div class="card">
                     <div class="card-header border-0">
+                        <div class="d-flex me-5">
+                            <h3 class="mb-0 me-2">{{ checkInResidencies.length }}</h3>
+                            <span>تحویل</span>
+                        </div>
+                        <div class="d-flex me-5">
+                            <h3 class="mb-0 me-2">{{ checkoutResidencies.length }}</h3>
+                            <span>تسویه</span>
+                        </div>
+                        <div class="me-auto">
+                            <h4 class="card-title mb-2">آمار تسویه و تحویل</h4>
+                            <!-- <span>Lorem ipsum dolor sit amet</span> -->
+                        </div>
                         <div class="dropdown">
                             <a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -95,6 +107,9 @@
                                 <a class="dropdown-item" href="javascript:void(0);">Edit</a>
                             </div>
                         </div>
+                    </div>
+                    <div class="card-body">
+                        <div id="reservationChart"></div>
                     </div>
                 </div>
             </div>
@@ -121,6 +136,26 @@
                                 <div class="row">
                                     <div class="col-xl-6 d-flex align-items-center col-sm-6 mb-sm-0 mb-3">
                                         <div class="me-4">
+                                            <div id="radialChartCheckin"></div>
+                                            <!-- <span class="donut" data-peity='{ "fill": ["var(--primary)", "rgba(246, 246, 246)"],   "innerRadius": 45, "radius": 10}'>6/8</span> -->
+                                        </div>
+                                        <div>
+                                            <h2>{{ (checkInResidencies.length/allResidencies.length)*100 }}%</h2>
+                                            <span class="fs-18">تحویل</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 d-flex align-items-center col-sm-6">
+                                        <div class="me-4">
+                                            <div id="radialChartCheckout"></div>
+                                            <!-- <span class="donut" data-peity='{ "fill": ["#FFC368", "rgba(246, 246, 246)"],   "innerRadius": 45, "radius": 10}'>2/8</span> -->
+                                        </div>
+                                        <div>
+                                            <h2>{{ (checkoutResidencies.length/allResidencies.length)*100 }}%</h2>
+                                            <span class="fs-18">تسویه</span>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-xl-6 d-flex align-items-center col-sm-6 mb-sm-0 mb-3">
+                                        <div class="me-4">
                                             <span class="donut" data-peity='{ "fill": ["var(--primary)", "rgba(246, 246, 246)"],   "innerRadius": 45, "radius": 10}'>{{ checkInResidencies.length }}/{{ allResidencies.length }}</span>
                                         </div>
                                         <div>
@@ -136,7 +171,7 @@
                                             <h2>{{ (checkoutResidencies.length/allResidencies.length)*100 }}%</h2>
                                             <span class="fs-18">تسویه</span>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>

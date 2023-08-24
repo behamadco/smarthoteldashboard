@@ -19,6 +19,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TravelerListComponent } from './traveler-list/traveler-list.component';
 import { TravelerDetailComponent } from './traveler-detail/traveler-detail.component';
 import { CommonModule } from '@angular/common';
+import { FinancialComponent } from './financial/financial.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { CommonModule } from '@angular/common';
     RoomComponent,
     RoomDetailComponent,
     TravelerListComponent,
-    TravelerDetailComponent
+    TravelerDetailComponent,
+    FinancialComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +43,7 @@ import { CommonModule } from '@angular/common';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),    
+    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

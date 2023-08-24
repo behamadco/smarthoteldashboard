@@ -7,6 +7,8 @@ export class TravelerModel{
     _lastName:string="";
     _phoneNumber:string="";
     _nationalCode:string="";
+    _originCountrey:string = "";
+    _originCity:string = "";
     _status:boolean=false;
     _lodging:string="";
     _companions!:CompanionModel[];
@@ -22,6 +24,10 @@ export class TravelerModel{
     
     getNationalCode(){return this._nationalCode}
 
+    getOriginCountrey(){return this._originCountrey}
+
+    getOriginCity(){return this._originCity}
+
     getStatus(){return this._status}
 
     getLodging(){return this._lodging}
@@ -32,8 +38,9 @@ export class TravelerModel{
         this._lastName = travelerParameter["lastName"];
         this._phoneNumber = travelerParameter["phoneNumber"];
         this._nationalCode = travelerParameter["nationalCode"];
+        this._originCountrey = travelerParameter["originCountrey"];
+        this._originCity = travelerParameter["originCity"];
         this._status = travelerParameter["status"];
         this._lodging = travelerParameter["lodging"];
-        
     }
 }

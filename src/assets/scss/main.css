@@ -3471,6 +3471,7 @@ textarea.form-control-lg {
     overflow: visible; }
   .navbar-expand .navbar-collapse {
     display: flex !important;
+    justify-content: start !important;
     flex-basis: auto; }
   .navbar-expand .navbar-toggler {
     display: none; }
@@ -9441,7 +9442,7 @@ label {
   z-index: 999; }
 
 .hamburger .line {
-  background: #000;
+  background: #ffffff;
   display: block;
   height: 0.1875rem;
   border-radius: 0.1875rem;
@@ -9525,7 +9526,6 @@ label {
   padding: 0rem;
   background: var(--headerbg);
   z-index: 3;
-  padding-left: 20.563rem;
   padding-top: 0rem;
   transition: all .2s ease; }
   .header .header-content {
@@ -9803,9 +9803,9 @@ svg.pulse-svg {
     display: flex;
     align-items: center;
     padding: 0;
-    border-left: 0.0625rem solid #F2F2F2;
-    padding-left: 1.875rem;
-    margin-left: 0.625rem; }
+    border-right: 0.0625rem solid #F2F2F2;
+    padding-right: 1.875rem;
+    margin-right: 0.625rem; }
     .header-right .header-profile .nav-link img {
       border-radius: 1.375rem;
       height: 3.5rem;
@@ -9945,12 +9945,12 @@ svg.pulse-svg {
   top: 0.625rem; }
 
 .content-body {
-  margin-left: 20.563rem;
+  margin-right: 20.563rem;
   z-index: 0;
   transition: all .2s ease; }
   @media only screen and (max-width: 87.5rem) {
     .content-body {
-      margin-left: 17.2rem; } }
+      margin-right: 17.2rem; } }
 
 .bell img {
   -webkit-animation: ring 8s .7s ease-in-out infinite;
@@ -10112,7 +10112,7 @@ svg.pulse-svg {
   height: calc(100% - 6.4375rem);
   position: absolute;
   top: 6.5rem;
-  left: 0;
+  right: 0;
   padding-top: 0;
   z-index: 4;
   background-color: var(--sidebar-bg);
@@ -10381,7 +10381,7 @@ svg.pulse-svg {
     padding-left: 0; }
 
   .deznav {
-    left: 0;
+    right: 0;
     top: 5rem; } }
 [data-sidebar-style="full"][data-layout="vertical"] .menu-toggle .deznav .metismenu > li.mega-menu > ul.collapse:not(.in),
 [data-sidebar-style="mini"][data-layout="vertical"] .deznav .metismenu > li.mega-menu > ul.collapse:not(.in) {
@@ -10619,7 +10619,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
     color: #fff;
     font-weight: 300; }
   [data-sidebar-style="full"][data-layout="vertical"] .deznav .metismenu > li .has-arrow:after {
-    right: 1.5rem; }
+    left: 1.5rem; }
   @media only screen and (max-width: 87.5rem) {
     [data-sidebar-style="full"][data-layout="vertical"] .deznav .metismenu > li {
       padding: 0 0.9375rem; }
@@ -10636,12 +10636,11 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   [data-sidebar-style="full"][data-layout="vertical"] .menu-toggle .nav-header .nav-control {
     right: -4rem; }
     [data-sidebar-style="full"][data-layout="vertical"] .menu-toggle .nav-header .nav-control .hamburger .line {
-      background-color: #000; }
+      background-color: white; }
 [data-sidebar-style="full"][data-layout="vertical"] .menu-toggle .copyright,
 [data-sidebar-style="full"][data-layout="vertical"] .menu-toggle .plus-box {
   display: none; }
 [data-sidebar-style="full"][data-layout="vertical"] .menu-toggle .header {
-  padding-left: 7.5rem;
   width: 100%; }
   [direction="rtl"][data-sidebar-style="full"][data-layout="vertical"] .menu-toggle .header {
     padding: 0 0.9375rem;
@@ -10679,7 +10678,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
       [data-sidebar-style="full"][data-layout="vertical"] .menu-toggle .deznav .metismenu li a:before {
         content: none; }
       [data-sidebar-style="full"][data-layout="vertical"] .menu-toggle .deznav .metismenu li a i {
-        margin: 0; }
+        margin-right: 20% !important; }
     [data-sidebar-style="full"][data-layout="vertical"] .menu-toggle .deznav .metismenu li > ul {
       position: absolute;
       left: 5.8rem;
@@ -10749,7 +10748,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   [data-sidebar-style="full"][data-layout="vertical"] .menu-toggle .deznav .metismenu .nav-badge {
     display: none; }
 [data-sidebar-style="full"][data-layout="vertical"] .menu-toggle .content-body {
-  margin-left: 6.5rem; }
+  margin-right: 6.5rem; }
   [direction="rtl"][data-sidebar-style="full"][data-layout="vertical"] .menu-toggle .content-body {
     margin-right: 5.7rem;
     margin-left: auto;
@@ -10800,7 +10799,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
       [data-sidebar-style="mini"] .nav-header .nav-control .hamburger {
         left: 6.25rem !important; }
         [data-sidebar-style="mini"] .nav-header .nav-control .hamburger .line {
-          background-color: #6e6e6e !important; }
+          background-color: #ffffff !important; }
     [data-sidebar-style="mini"] .nav-header .brand-title {
       display: none; }
     [data-sidebar-style="mini"] .nav-header .hamburger {
@@ -10891,7 +10890,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
       top: 5.5rem; } }
 @media only screen and (min-width: 48rem) {
   [data-sidebar-style="mini"] .content-body {
-    margin-left: 6.5rem; }
+    margin-right: 6.5rem; margin-left: 0;}
   [data-sidebar-style="mini"] .footer {
     padding-left: 6.5rem; }
   [data-sidebar-style="mini"][data-header-position="fixed"] .content-body {
@@ -11593,7 +11592,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
       justify-content: center;
       padding: 0 1rem; }
     [data-sidebar-style="modern"] .nav-header .hamburger .line {
-      background: #000; }
+      background: #ffffff; }
   [data-sidebar-style="modern"] .deznav .header-profile {
     margin-bottom: 0.3125rem; }
     [data-sidebar-style="modern"] .deznav .header-profile > a.nav-link {
@@ -11757,7 +11756,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 [data-sidebar-style="overlay"][data-layout="vertical"] .menu-toggle .nav-header {
   border-radius: 0 0 0 0; }
 [data-sidebar-style="overlay"] .deznav {
-  left: -100%;
+  right: -100%;
   -webkit-transition: all 0.5s;
   -ms-transition: all 0.5s;
   transition: all 0.5s;
@@ -11809,7 +11808,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
     [data-sidebar-style="overlay"] .deznav .metismenu ul li a {
       padding-left: 3.4rem; } }
 [data-sidebar-style="overlay"] .content-body {
-  margin-left: 0; }
+  margin-right: 0; }
 [data-sidebar-style="overlay"] .nav-header {
   position: absolute; }
   [data-sidebar-style="overlay"] .nav-header .hamburger.is-active {

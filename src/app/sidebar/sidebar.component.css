@@ -1,0 +1,14 @@
+.sidebar-link{
+    display: flex !important;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+}
+
+.nav-text-sidebar{
+    margin-right: 1rem;
+}
+
+.active-nav{
+  color: #fff;
+  background: var(--primary) !important;
+}

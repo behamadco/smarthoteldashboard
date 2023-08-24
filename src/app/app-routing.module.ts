@@ -6,6 +6,7 @@ import { RoomComponent } from './room/room.component';
 import { RoomDetailComponent } from './room-detail/room-detail.component';
 import { TravelerListComponent } from './traveler-list/traveler-list.component';
 import { TravelerDetailComponent } from './traveler-detail/traveler-detail.component';
+import { FinancialComponent } from './financial/financial.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,9 @@ const routes: Routes = [
   },
   {
     path: "traveler-detail", component: TravelerDetailComponent
+  },
+  {
+    path: "financial-bills", component: FinancialComponent
   }
 ];
 

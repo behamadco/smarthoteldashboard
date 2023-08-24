@@ -8,11 +8,13 @@ export class BillingModel{
     _facture:FactureModel[]=[];
     _cost:number=0;
     _dateAndTime:string="";
-    _status:boolean=false
+    _status:string="";
 
     getID(){return this._id}
 
     getCode(){return this._code}
+
+    getTraveler(){return this._traveler}
 
     getCost(){return this._cost}
 
@@ -26,13 +28,14 @@ export class BillingModel{
         this._traveler = new TravelerModel();
         this._traveler.fromString(billingParameters["traveler"]);
         this._cost = billingParameters["cost"];
-        this._dateAndTime = billingParameters["dateAndTime"];
+        this._dateAndTime = billingParameters["timestamp"];
         this._status = billingParameters["status"];
 
         let facturesAsArray = Array.from(billingParameters["facture"]);
-        for(var index=0;facturesAsArray.length;index++){
+        for(var index=0;index<facturesAsArray.length;index++){
             let facture:FactureModel = new FactureModel();
             facture.fromString(facturesAsArray[index]);
+            console.log(facture);
             this._facture.push(facture);
         }
     }

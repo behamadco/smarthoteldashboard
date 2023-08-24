@@ -5,3 +5,15 @@
 .traveler-param{
     padding-right: 3%;
 }
+
+.flex-class{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.vertical-items{
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
