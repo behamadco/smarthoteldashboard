@@ -8,6 +8,7 @@ import { ResidenceService } from '../services/residence.service';
 import { ResidenceModel } from '../models/residence.model';
 import { BillingService } from '../services/billing.service';
 import { BillingModel } from '../models/billing.model';
+import { RoomModel } from '../models/room.mode';
 
 @Component({
   selector: 'app-traveler-detail',
@@ -26,8 +27,11 @@ export class TravelerDetailComponent {
   };
 
   traveler:TravelerModel = new TravelerModel();
+  currentResidence:ResidenceModel = new ResidenceModel();
   residences:ResidenceModel[] = [];
   bills:BillingModel[] = [];
+
+  currentResidenceRoom:RoomModel = new RoomModel();
   constructor(private route:ActivatedRoute, private router:Router, private _travelerService:TravelerService, private _residenceService:ResidenceService, private _billService:BillingService,private toastr:ToastrService){}
 
   ngOnInit(){
@@ -40,11 +44,24 @@ export class TravelerDetailComponent {
         this.traveler.fromString(getTravelerByID["data"]);
         this.fetchResidences();
         this.fetchBills();
+        this.fetchCurrentResidence();
       }
     });
   }
 
-  fetchBills(){
+  fetchCurrentResidence = async()=>{
+    this._residenceService.getCurrentResidence(this.traveler).subscribe(getCurrentTraveler=>{
+      var status = getCurrentTraveler["status"];
+      if(!status){
+        this.toastr.error("خطا در دریافت اطلاعات. لطفا مجدد تلاش فرمایید (Residence)","خطا",AppSetting.toastOptions);
+      }else{
+        this.currentResidence.fromString(getCurrentTraveler["data"]);
+        this.currentResidenceRoom = this.currentResidence.getRooms()[0];
+      }
+    });
+  }
+
+  fetchBills = async() =>{
     this._billService.getBiilsByTraveler(this.traveler).subscribe(getBillsByTraveler=>{
       console.log(getBillsByTraveler);
       var getBillsStatus = getBillsByTraveler["status"];
@@ -52,7 +69,6 @@ export class TravelerDetailComponent {
         this.toastr.error("خطا در دریافت اطلاعات. لطفا مجدد تلاش فرمایید","خطا",AppSetting.toastOptions);
       }else{
         var billsData:any = getBillsByTraveler["data"];
-        console.log(billsData[0]);
         for(var index=0;index<billsData.length;index++){
           var billInstance:BillingModel = new BillingModel();
           billInstance.fromString(billsData[index]);
@@ -62,7 +78,7 @@ export class TravelerDetailComponent {
     });
   }
 
-  fetchResidences(){
+  fetchResidences = async() => {
     this._residenceService.getResidenceByTraveler(this.traveler).subscribe(getResidenceByTraveler=>{
       var getResidencesStatus = getResidenceByTraveler["status"];
       if(!getResidencesStatus){

@@ -92,4 +92,12 @@ export class ResidenceService {
     return this.http.post<any>(this.url+path, body,{headers:this.headers});
   }
 
+  getCurrentResidence(traveler:TravelerModel):Observable<any>{
+    var path = "/api/residence/getCurrentResidence";
+    var body = {
+      "travelerid":traveler.getID(),
+    }
+    return this.http.post<any>(this.url+path, body,{headers:this.headers});
+  }
+
 }

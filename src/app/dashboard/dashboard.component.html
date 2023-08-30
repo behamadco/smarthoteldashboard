@@ -49,16 +49,25 @@
                             </div>
                             <div class="card-body">
                                 <div class="progress mb-4" style="height:13px;">
+                                    <div class="progress-bar gradient-4 progress-animated" style="height:13px;" [ngStyle]="{'width':lodgingInPercent}" role="progressbar">
+                                    </div>
+                                </div>
+                                <div class="progress mb-4" style="height:13px;">
                                     <div class="progress-bar gradient-5 progress-animated" style="height:13px;" [ngStyle]="{'width':reservedInPercent}" role="progressbar">
-                                        <span class="sr-only">45% Complete</span>
                                     </div>
                                 </div>
                                 <div class="progress mb-4" style="height:13px;">
                                     <div class="progress-bar gradient-6 progress-animated" style="height:13px;" [ngStyle]="{'width':availableInPercent}" role="progressbar">
-                                        <span class="sr-only">45% Complete</span>
                                     </div>
                                 </div>
                                 <div class="d-flex mt-4 progress-bar-legend align-items-center justify-content-between card-row">
+                                    <div class="d-flex card-text" style="flex-direction: row-reverse;">
+                                        <span class="marker gradient-4" style="margin-left: 5px;"></span>
+                                        <div>
+                                            <p class="status">اسکان</p>
+                                            <span class="result">{{ lodgingRooms.length }}</span>
+                                        </div>
+                                    </div>
                                     <div class="d-flex card-text" style="flex-direction: row-reverse;">
                                         <span class="marker gradient-5" style="margin-left: 5px;"></span>
                                         <div>
@@ -137,7 +146,6 @@
                                     <div class="col-xl-6 d-flex align-items-center col-sm-6 mb-sm-0 mb-3">
                                         <div class="me-4">
                                             <div id="radialChartCheckin"></div>
-                                            <!-- <span class="donut" data-peity='{ "fill": ["var(--primary)", "rgba(246, 246, 246)"],   "innerRadius": 45, "radius": 10}'>6/8</span> -->
                                         </div>
                                         <div>
                                             <h2>{{ (checkInResidencies.length/allResidencies.length)*100 }}%</h2>
@@ -147,31 +155,12 @@
                                     <div class="col-xl-6 d-flex align-items-center col-sm-6">
                                         <div class="me-4">
                                             <div id="radialChartCheckout"></div>
-                                            <!-- <span class="donut" data-peity='{ "fill": ["#FFC368", "rgba(246, 246, 246)"],   "innerRadius": 45, "radius": 10}'>2/8</span> -->
                                         </div>
                                         <div>
                                             <h2>{{ (checkoutResidencies.length/allResidencies.length)*100 }}%</h2>
                                             <span class="fs-18">تسویه</span>
                                         </div>
                                     </div>
-                                    <!-- <div class="col-xl-6 d-flex align-items-center col-sm-6 mb-sm-0 mb-3">
-                                        <div class="me-4">
-                                            <span class="donut" data-peity='{ "fill": ["var(--primary)", "rgba(246, 246, 246)"],   "innerRadius": 45, "radius": 10}'>{{ checkInResidencies.length }}/{{ allResidencies.length }}</span>
-                                        </div>
-                                        <div>
-                                            <h2>{{ (checkInResidencies.length/allResidencies.length)*100 }}%</h2>
-                                            <span class="fs-18">تحویل</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6 d-flex align-items-center col-sm-6">
-                                        <div class="me-4">
-                                            <span class="donut" data-peity='{ "fill": ["#FFC368", "rgba(246, 246, 246)"],   "innerRadius": 45, "radius": 10}'>{{ checkoutResidencies.length }}/{{ allResidencies.length }}</span>
-                                        </div>
-                                        <div>
-                                            <h2>{{ (checkoutResidencies.length/allResidencies.length)*100 }}%</h2>
-                                            <span class="fs-18">تسویه</span>
-                                        </div>
-                                    </div> -->
                                 </div>
                             </div>
                         </div>
