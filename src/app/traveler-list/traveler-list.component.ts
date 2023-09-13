@@ -41,8 +41,8 @@ export class TravelerListComponent {
 
   filterList(travelerLodging:string){
     if(travelerLodging=="all"){
-      this.showAllTraveler = false;
-      this.shwoLodgingTraveler = true;
+      this.showAllTraveler = true;
+      this.shwoLodgingTraveler = false;
       this.showReservedTraveler = false;
       this.showCheckoutTraveler = false
     }

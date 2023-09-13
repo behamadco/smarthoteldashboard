@@ -1,4 +1,4 @@
-export class RoomType{
+export class RoomTypeModel{
     _id:number=0;
     _title:string="";
 

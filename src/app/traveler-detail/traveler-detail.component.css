@@ -23,3 +23,21 @@
     flex-direction: row-reverse;
     justify-content: space-between;
 }
+
+.current-room-card{
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+}
+
+.current-room-subcard{
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: brightness(0.5);
+    height: 100%;
+    color: white;
+}
+
+.nav-pills-custom{
+    justify-content: center;
+    direction: rtl;
+}

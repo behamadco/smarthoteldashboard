@@ -20,6 +20,17 @@ import { TravelerListComponent } from './traveler-list/traveler-list.component';
 import { TravelerDetailComponent } from './traveler-detail/traveler-detail.component';
 import { CommonModule } from '@angular/common';
 import { FinancialComponent } from './financial/financial.component';
+import { AppSetting } from './configuration/config';
+import { IMqttServiceOptions, MqttModule } from 'ngx-mqtt';
+
+
+
+const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
+  hostname: AppSetting.mqttBroker,
+  port: AppSetting.mqttPort,
+  protocol: 'ws',
+  path: AppSetting.mqttPath,
+};
 
 
 @NgModule({
@@ -37,6 +48,7 @@ import { FinancialComponent } from './financial/financial.component';
     FinancialComponent
   ],
   imports: [
+    MqttModule.forRoot(MQTT_SERVICE_OPTIONS),
     BrowserModule,
     AppRoutingModule,
     NgApexchartsModule,

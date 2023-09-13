@@ -26,7 +26,8 @@
                                 class="flaticon-381-search-2"></i></a></span>
                         </div>
                     </div>	
-                    <a href="javascript:void(0);" class="btn btn-primary mb-xxl-0 mb-4"><i class="far fa-file-word me-2"></i>خروجی اکسل</a>
+                    <button class="btn btn-primary mb-xxl-0 mb-4"><i class="far fa-file-word me-2"></i>خروجی اکسل</button>
+                    <button class="btn btn-primary mb-xxl-0 mb-4" data-bs-toggle="modal" data-bs-target="#addRoomModal"><i class="fa fa-plus me-2"></i>افزودن اتاق</button>
                 </div>
                 <div class="tab-content">	
                     <div [ngClass]="showAllRooms ? 'tab-pane show active' : 'tab-pane show'" id="all">
@@ -74,7 +75,7 @@
                                         <td>
                                             <div>
                                                 
-                                                <span class="fs-16"></span>
+                                                <span class="fs-16">{{ room.getDescription() }}</span>
                                             </div>
                                         </td>
                                         <td>
@@ -132,7 +133,7 @@
                                         <td>
                                             <div>
                                                 
-                                                <span class="fs-16"></span>
+                                                <span class="fs-16">{{ room.getDescription() }}</span>
                                             </div>
                                         </td>
                                         <td>
@@ -190,7 +191,7 @@
                                         <td>
                                             <div>
                                                 
-                                                <span class="fs-16"></span>
+                                                <span class="fs-16">{{ room.getDescription() }}</span>
                                             </div>
                                         </td>
                                         <td>
@@ -248,7 +249,7 @@
                                         <td>
                                             <div>
                                                 
-                                                <span class="fs-16"></span>
+                                                <span class="fs-16">{{ room.getDescription() }}</span>
                                             </div>
                                         </td>
                                         <td>
@@ -262,6 +263,43 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addRoomModal">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="direction: rtl;">
+                <h5 class="modal-title">افزودن اتاق</h5>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <input type="text" class="form-control input-default input-right" id="roomnumber" placeholder="شماره اتاق">
+                </div>
+                <select class="default-select form-control wide mb-3 input-right" id="floornumber">
+                    <option *ngFor="let floor of floors">{{ floor.getNumber() }}</option>
+                </select>
+                <div class="mb-3">
+                    <input type="text" class="form-control input-default input-right" id="roomcost" placeholder="قیمت (ریال)">
+                </div>
+                <select class="default-select form-control wide mb-3 input-right" id="roomtype">
+                    <option *ngFor="let roomType of allRoomTypes" value="{{ roomType.getID() }}">{{ roomType.getTitle() }}</option>
+                </select>
+                <div class="mb-3">
+                    <input type="text" class="form-control input-default input-right" id="roomcapacity" placeholder="ظرفیت">
+                </div>
+                <div class="mb-3">
+                    <input type="text" class="form-control input-default input-right" id="roombedtype" placeholder="نوع تخت">
+                </div>
+                <div class="mb-3">
+                    <textarea class="form-control input-right" rows="10" id="roomdescription" placeholder="توضیحات"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer" style="justify-content: start;">
+                <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">بستن</button>
+                <button (click)="addRoom()" type="button" class="btn btn-primary">ذخیره</button>
             </div>
         </div>
     </div>

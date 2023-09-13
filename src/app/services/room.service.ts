@@ -15,21 +15,20 @@ export class RoomService {
     private _token: any=localStorage.getItem("authToken");
     private _uuid: any=localStorage.getItem("useruuid");
     private headers:any;
-    // private headers:any=new HttpHeaders({
-    //     "Content-Type": "application/json",
-    //     "Authorization": "Token " + this._token,
-    // });
 
     constructor(private http: HttpClient){
       this.headers = new HttpHeaders().append('Content-Type','application/json').append('Authorization','Token '+this._token)
     }
 
-    createRoom(roomNumber: any,floorNumber:any,cost:any,roomTypeId:any):Observable<any>{
+    createRoom(roomNumber: any,floorNumber:any,cost:any,roomTypeId:any, capacity:any, description:any, bedType:any):Observable<any>{
         var path = "/api/room/createRoom";
         var body = {
             "roomnumber":roomNumber,
             "floornumber":floorNumber,
             "cost":cost,
+            "capacity":capacity,
+            "description":description,
+            "bedtype":bedType,
             "roomtypeid":roomTypeId,
             "useruuid":this._uuid
         };
@@ -56,5 +55,10 @@ export class RoomService {
             "roomnumber":roomNumber
         };
         return this.http.post<any>(this.url+path,body,{headers: this.headers})
+    }
+
+    getRoomTypes():Observable<any>{
+        var path = "/api/room/getRoomTypes";
+        return this.http.post<any>(this.url+path,{},{headers: this.headers});
     }
 }

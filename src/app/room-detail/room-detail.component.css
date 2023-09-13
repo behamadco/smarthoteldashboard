@@ -8,3 +8,25 @@
 .available-item{
     color: green;
 }
+
+.current-room-card{
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+}
+
+.current-room-subcard{
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: brightness(0.5);
+    height: 100%;
+    color: white;
+}
+
+.active-device{
+    color: green;
+}
+
+.deactive-device{
+    color: red;
+}
+

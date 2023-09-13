@@ -9,7 +9,7 @@ export class TravelerModel{
     _nationalCode:string="";
     _originCountrey:string = "";
     _originCity:string = "";
-    _status:boolean=false;
+    _status:string="";
     _lodging:string="";
     _companions!:CompanionModel[];
     _room!:RoomModel;

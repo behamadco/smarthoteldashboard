@@ -67,7 +67,7 @@ export class FinancialComponent {
     if(billStatus=="unpaid"){
       this.showAllBills = false;
       this.showPaidBills = false;
-      this.showUnPaidBills = false;
+      this.showUnPaidBills = true;
     }
   }
 

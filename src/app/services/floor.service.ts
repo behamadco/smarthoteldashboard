@@ -11,17 +11,14 @@ import { FloorModel } from '../models/floor.model';
 })
 export class FloorService {
     private url = AppSetting.serverUrl;
-    private _token: any;
-    private _uuid: any;
-    private headers:any;
+    private _token: any=localStorage.getItem("authToken");
+    private _uuid: any=localStorage.getItem("useruuid");
+    private headers:any=new HttpHeaders({
+      "Content-Type": "application/json",
+      "Authorization": "Token " + this._token
+    });
 
     constructor(private http: HttpClient){
-        this._token = localStorage.getItem("authToken");
-        this._uuid = localStorage.getItem("useruuid");
-        this.headers = new HttpHeaders({
-            "Content-Type": "application/json",
-            "Authorization": "Token " + this._token,
-        });
     }
 
 
@@ -55,7 +52,7 @@ export class FloorService {
 
     getAllFloors():Observable<any>{
       var path = "/api/floor/getAllFloors";
-      return this.http.post<any>(this.url+path,{headers:this.headers});
+      return this.http.post<any>(this.url+path,{},{headers:this.headers});
     }
 
     getFloor(floor:FloorModel):Observable<any>{
@@ -63,6 +60,6 @@ export class FloorService {
       var body = {
         "floorid":floor.getID()
       };
-      return this.http.post<any>(this.url+path,{headers:this.headers})
+      return this.http.post<any>(this.url+path,body,{headers:this.headers})
     }
 }
