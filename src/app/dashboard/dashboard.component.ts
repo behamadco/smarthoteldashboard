@@ -16,6 +16,19 @@ import { Observable } from 'rxjs';
 })
 export class DashboardComponent {
 
+  statuses:any = {
+    "NORMAL":"عادی",
+    "REPORT":"گزارش شده"
+  };
+
+  residenceStatus:any = {
+    "CHECKOUT":"تسویه",
+    "CHECKIN":"تحویل"
+  };
+
+  month:any = ["فروردین","اردیبهشت","خرداد","تیر","مرداد","شهریور","مهر","آبان","آذر","دی","بهمن","اسفند"];
+
+
   allRooms: RoomModel[] = [];
   lodgingRooms: RoomModel[] = [];
   availableRooms: RoomModel[] = [];
@@ -115,82 +128,6 @@ export class DashboardComponent {
     checkoutChart.render();
   }
 
-  reservationChart(checkinData: any, checkoutData: any) {
-    var options = {
-      series: [{
-        name: 'تسویه',
-        data: checkoutData,
-      }, {
-        name: 'تحویل',
-        data: checkinData
-      }],
-      chart: {
-        height: 400,
-        type: 'area',
-        toolbar: {
-          show: false
-        }
-      },
-      colors: ["#1362FC", "#FF6E5A"],
-      dataLabels: {
-        enabled: false
-      },
-      stroke: {
-        width: 6,
-        curve: 'smooth',
-      },
-      legend: {
-        show: false
-      },
-      grid: {
-        borderColor: '#EBEBEB',
-        strokeDashArray: 6,
-      },
-      markers: {
-        strokeWidth: 6,
-        hover: {
-          size: 15,
-        }
-      },
-      yaxis: {
-        labels: {
-          offsetX: -12,
-          style: {
-            colors: '#787878',
-            fontSize: '13px',
-            fontFamily: 'Poppins',
-            fontWeight: 400
-
-          }
-        },
-      },
-      xaxis: {
-        categories: ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12","13","14"],
-        labels: {
-          style: {
-            colors: '#787878',
-            fontSize: '13px',
-            fontFamily: 'Poppins',
-            fontWeight: 400
-
-          },
-        }
-      },
-      fill: {
-        type: "solid",
-        opacity: 0.1
-      },
-      tooltip: {
-        x: {
-          format: 'dd/MM/yy HH:mm'
-        },
-      },
-    };
-
-    var chart = new ApexCharts(document.querySelector("#reservationChart"), options);
-    chart.render();
-  }
-
   ngOnInit(): void {
 
     this.fetchRooms().then(()=>{
@@ -243,5 +180,37 @@ export class DashboardComponent {
         this.radialChart();
       }
     });
+  }
+
+  getStatusDefinition(status:any){
+    return this.statuses[status];
+  }
+
+  getResidenceDefinition(status:any){
+    return this.residenceStatus[status];
+  }
+
+  toEnglishDigits(str:any) {
+    var e = '۰'.charCodeAt(0);
+    str = str.replace(/[۰-۹]/g, (t:any)=> {
+        return t.charCodeAt(0) - e;
+    });
+    return str;
+  }
+
+  toPersianCalendar(timestamp:any){
+    var gDate = new Date(timestamp);
+    var jDate = gDate.toLocaleDateString("fa");
+    var splited = jDate.split("/");
+    
+    var day = this.toEnglishDigits(splited[2]);
+    var monthNumb = this.toEnglishDigits(splited[1]) - 1;
+    var year = this.toEnglishDigits(splited[0]);
+
+    return day + " " + this.month[monthNumb] + " " + year;
+  }
+
+  round(number:number){
+    return Math.round(number);
   }
 }

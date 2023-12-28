@@ -56,6 +56,14 @@ export class ResidenceService {
     return this.http.post<any>(this.url+path, body,{headers:this.headers});
   }
 
+  getResidenciesByRoom(room: RoomModel):Observable<any>{
+    var path = "/api/residence/getResidenciesByRoom";
+    var body = {
+      "roomid": room.getID(),
+    };
+    return this.http.post<any>(this.url+path, body, {headers:this.headers});
+  }
+
   getResidenceByTraveler(traveler:TravelerModel):Observable<any>{
     var path = "/api/residence/getResidenceByTraveler";
     var body = {
@@ -101,3 +109,4 @@ export class ResidenceService {
   }
 
 }
+

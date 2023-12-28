@@ -99,26 +99,66 @@
                             <h3 class="mb-0 me-2">{{ checkoutResidencies.length }}</h3>
                             <span>تسویه</span>
                         </div>
-                        <div class="me-auto">
+                        <div>
                             <h4 class="card-title mb-2">آمار تسویه و تحویل</h4>
                             <!-- <span>Lorem ipsum dolor sit amet</span> -->
                         </div>
-                        <div class="dropdown">
-                            <a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                    <path d="M12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                    <path d="M12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                </svg>
-                            </a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                                <a class="dropdown-item" href="javascript:void(0);">Edit</a>
-                            </div>
-                        </div>
                     </div>
                     <div class="card-body">
-                        <div id="reservationChart"></div>
+                        <div class="row">
+                            <div class="table-responsive" style="direction: rtl; text-align: center;">
+                                <table class="table card-table  display mb-4 dataTablesCard booking-table room-list-tbl table-responsive-lg">
+                                    <thead>
+                                        <tr>
+                                            <th>شناسه</th>
+                                            <th>تاریخ ورود</th>
+                                            <th>تاریخ خروج</th>
+                                            <th>شماره اتاق</th>
+                                            <th>وضعیت</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let residence of allResidencies">
+                                            <td>
+                                                <div>
+                                                    <div>
+                                                        <h4 class="mb-0 mt-1"><a class="text-black" >{{ residence.getCode() }}</a></h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <div>
+                                                        <h4 class="mb-0 mt-1"><a class="text-black" >{{ toPersianCalendar(residence.getStartDateAndTime()) }}</a></h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <div>
+                                                        <h4 class="mb-0 mt-1"><a class="text-black" >{{ toPersianCalendar(residence.getEndDateAndTime()) }}</a></h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <div>
+                                                        <h4 class="mb-0 mt-1"><a class="text-black" >{{ residence.getRooms()[0].getNumber() }}</a></h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <div>
+                                                        <h4 class="mb-0 mt-1"><a class="text-black" >{{ getResidenceDefinition(residence.getStatus()) }}</a></h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -148,7 +188,7 @@
                                             <div id="radialChartCheckin"></div>
                                         </div>
                                         <div>
-                                            <h2>{{ (checkInResidencies.length/allResidencies.length)*100 }}%</h2>
+                                            <h2>{{ round((checkInResidencies.length/allResidencies.length)*100) }}%</h2>
                                             <span class="fs-18">تحویل</span>
                                         </div>
                                     </div>
@@ -157,7 +197,7 @@
                                             <div id="radialChartCheckout"></div>
                                         </div>
                                         <div>
-                                            <h2>{{ (checkoutResidencies.length/allResidencies.length)*100 }}%</h2>
+                                            <h2>{{ round((checkoutResidencies.length/allResidencies.length)*100) }}%</h2>
                                             <span class="fs-18">تسویه</span>
                                         </div>
                                     </div>

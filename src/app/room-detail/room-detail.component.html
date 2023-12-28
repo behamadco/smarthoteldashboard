@@ -66,17 +66,79 @@
         </div>
         <div class="row" *ngIf="loaded">
             <div class="card">
-                <div class="card-header border-0">
-                    <div class="col-xl-4 col-xxl-4">
-                        <img src="../../assets/images/card.png" alt="" style="width: 20%; height: 100%;">
+                <div class="card-header border-0" style="text-align: center;">
+                    <div class="col-xl-3 col-xxl-3">
+                        <img src="../../assets/images/card.png" alt="" class="deactivate-option" style="width: 20%; height: 100%;">
+                        <p>کارتخوان</p>
                     </div>
-                    <div class="col-xl-8 col-xxl-8" style="text-align: start; direction: rtl; flex-direction: column;">
-                        
-                        <span>اتصال کارتخوان: </span><span [ngClass]="{activatedRfidDevice ? 'active-device' : 'deactive-device'}">فعال</span>
-
-                        <span>کارت: </span> <span>101</span>
+                    <div class="col-xl-3 col-xxl-3">
+                        <img src="../../assets/images/wifi.png" alt="" class="deactivate-option" style="width: 20%; height: 100%;">
+                        <p>اینترنت</p>
+                    </div>
+                    <div class="col-xl-3 col-xxl-3">
+                        <img src="../../assets/images/lightning.png" class="deactivate-option" alt="" style="width: 20%; height: 100%;">
+                        <p>روشنایی</p>
+                    </div>
+                    <div class="col-xl-3 col-xxl-3">
+                        <img src="../../assets/images/thermostat.png" class="deactivate-option" alt="" style="width: 20%; height: 100%;">
+                        <p>ترموستات</p>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="loaded">
+            <div class="table-responsive" style="direction: rtl; text-align: center;">
+                <table class="table card-table  display mb-4 dataTablesCard booking-table room-list-tbl table-responsive-lg">
+                    <thead>
+                        <tr>
+                            <th>شناسه</th>
+                            <th>تاریخ ورود</th>
+                            <th>تاریخ خروج</th>
+                            <th>شماره اتاق</th>
+                            <th>وضعیت</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let residence of residences">
+                            <td>
+                                <div>
+                                    <div>
+                                        <h4 class="mb-0 mt-1"><a class="text-black" >{{ residence.getCode() }}</a></h4>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <div>
+                                        <h4 class="mb-0 mt-1"><a class="text-black" >{{ toPersianCalendar(residence.getStartDateAndTime()) }}</a></h4>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <div>
+                                        <h4 class="mb-0 mt-1"><a class="text-black" >{{ toPersianCalendar(residence.getEndDateAndTime()) }}</a></h4>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <div>
+                                        <h4 class="mb-0 mt-1"><a class="text-black" >{{ residence.getRooms()[0].getNumber() }}</a></h4>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <div>
+                                        <h4 class="mb-0 mt-1"><a class="text-black" >{{ getResidenceDefinition(residence.getStatus()) }}</a></h4>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
