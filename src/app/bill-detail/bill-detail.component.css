@@ -1,0 +1,20 @@
+.detail-item-row{
+    direction: rtl;
+    width: 100%;
+    text-align: center;
+    font-size: initial;
+    flex-direction: row-reverse;
+}
+
+.unpaid{
+    color: red;
+}
+
+.input-right{
+    direction: rtl;
+}
+
+.nav-pills-custom{
+    justify-content: center;
+    direction: rtl;
+}

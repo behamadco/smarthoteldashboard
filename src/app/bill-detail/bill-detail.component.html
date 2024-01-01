@@ -1,0 +1,171 @@
+<div class="content-body">
+    <div class="container-fluid">
+        <button class="btn btn-primary mb-xxl-0 mb-4" data-bs-toggle="modal" data-bs-target="#addFactureModal"><i class="fa fa-plus me-2"></i>افزودن فاکتور</button>
+        
+        <div class="row">
+            <div class="col-xl-12 col-xxl-12">
+                <div class="card">
+                    <div class="card-header border-0">
+                        <div class="row detail-item-row">
+                            <div class="col-sm-6">
+                                <div class="detail-item">
+                                    <span>وضعیت پرداخت: </span>
+                                    <span>{{ paymentStatus[bill.getStatus()] }}</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="detail-item">
+                                    <span>تاریخ ایجاد: </span>
+                                    <span>{{ toPersianCalendar(bill.getDateAndTime()) }}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row detail-item-row">
+                            <div class="col-sm-12">
+                                <div class="detail-item">
+                                    <span>شناسه صورتحساب: </span>
+                                    <span>{{ bill.getCode() }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="table-responsive" style="direction: rtl; text-align: center;">
+                <table class="table card-table  display mb-4 dataTablesCard booking-table room-list-tbl table-responsive-lg">
+                    <thead>
+                        <tr>
+                            <th>شناسه</th>
+                            <th>عنوان</th>
+                            <th>تاریخ ایجاد</th>
+                            <th>مبلغ فاکتور</th>
+                            <th>توضیحات</th>
+                            <th>وضعیت</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let facture of bill.getFactures()">
+                            <td>
+                                <div>
+                                    <div>
+                                        <h4 class="mb-0 mt-1"><a class="text-black" >{{ facture.getNumber() }}</a></h4>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <div>
+                                        <h4 class="mb-0 mt-1"><a class="text-black" >{{ facture.getTitle() }}</a></h4>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <div>
+                                        <h4 class="mb-0 mt-1"><a class="text-black" >{{ toPersianCalendar(facture.getTimeStamp()) }}</a></h4>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <div>
+                                        <h4 class="mb-0 mt-1"><a class="text-black" >{{ toCurrencyFormat(facture.getCost()) }}</a></h4>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <div>
+                                        <h4 class="mb-0 mt-1"><a class="text-black" >{{ facture.getDescription() }}</a></h4>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <div>
+                                        <h4 class="mb-0 mt-1"><a [ngClass]="facture.getStatus()=='u' ? 'unpaid' : 'text-black'" (click)="updateCurrentEditableFacture(facture)" data-bs-toggle="modal" data-bs-target="#changeFactureStatus">{{ facturePayment[facture.getStatus()] }}</a></h4>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-12 col-xxl-12">
+                <div class="card">
+                    <div class="card-header border-0">
+                        <div class="row detail-item-row">
+                            <div class="col-sm-6">
+                                <div class="detail-item">
+                                    <span>بستانکاری: </span>
+                                    <span>{{ toCurrencyFormat(paidCost) }} </span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="detail-item">
+                                    <span>بدهکاری: </span>
+                                    <span style="direction: rtl;">{{ toCurrencyFormat(unpaidCost) }} </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<div class="modal fade" id="addFactureModal">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="direction: rtl;">
+                <h5 class="modal-title">افزودن فاکتور</h5>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <input type="text" class="form-control input-default input-right" id="factureTitle" placeholder="عنوان فاکتور">
+                </div>
+                <div class="mb-3">
+                    <input type="text" class="form-control input-default input-right" id="factureCost" placeholder="قیمت فاکتور">
+                </div>
+                <div class="mb-3">
+                    <textarea class="form-control input-right" rows="10" id="factureDescription" placeholder="توضیحات"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer" style="justify-content: start;">
+                <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">بستن</button>
+                <button (click)="addFacture()" type="button" class="btn btn-primary">ذخیره</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="changeFactureStatus">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="direction: rtl;">
+                <h5 class="modal-title">تغییر وضعیت فاکتور</h5>
+            </div>
+            <div class="modal-body">
+                <ul class="nav nav-pills mb-4 light nav-pills-custom">
+                    <li class=" nav-item">
+                        <a href="" (click)="changeFactureStatus('paid')" id="paidPill" class="nav-link" data-bs-toggle="tab" aria-expanded="false">پرداخت شده</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" (click)="changeFactureStatus('unpaid')" id="unpaidPill" class="nav-link" data-bs-toggle="tab" aria-expanded="false">پرداخت نشده</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

@@ -64,6 +64,14 @@ export class BillingService {
       return this.http.post<any>(this.url+path,body,{headers:this.headers});
     }
 
+    getBillByCode(billCode:number):Observable<any>{
+      var path = "/api/billing/getBillByCode";
+      var body = {
+        "billcode":billCode
+      }
+      return this.http.post<any>(this.url+path,body,{headers:this.headers});
+    }
+
     getBiilsByTraveler(traveler:TravelerModel):Observable<any>{
       var path = "/api/billing/getBillsByTraveler";
       var body = {
@@ -76,4 +84,5 @@ export class BillingService {
       var path = "/api/billing/getAllBills";
       return this.http.post<any>(this.url+path,{},{headers:this.headers});
     }
+  
 }

@@ -16,6 +16,8 @@ export class BillingModel{
 
     getTraveler(){return this._traveler}
 
+    getFactures(){return this._facture}
+
     getCost(){return this._cost}
 
     getDateAndTime(){return this._dateAndTime}

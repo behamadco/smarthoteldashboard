@@ -22,6 +22,7 @@ import { CommonModule } from '@angular/common';
 import { FinancialComponent } from './financial/financial.component';
 import { AppSetting } from './configuration/config';
 import { IMqttServiceOptions, MqttModule } from 'ngx-mqtt';
+import { BillDetailComponent } from './bill-detail/bill-detail.component';
 
 
 
@@ -45,7 +46,8 @@ const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
     RoomDetailComponent,
     TravelerListComponent,
     TravelerDetailComponent,
-    FinancialComponent
+    FinancialComponent,
+    BillDetailComponent
   ],
   imports: [
     MqttModule.forRoot(MQTT_SERVICE_OPTIONS),
