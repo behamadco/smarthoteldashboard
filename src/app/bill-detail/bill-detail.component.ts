@@ -42,10 +42,16 @@ export class BillDetailComponent {
 
   currentEditableFacture!:FactureModel;
 
+  language:any = "";
 
-  constructor(private _toastr:ToastrService, private route:ActivatedRoute, private router: Router, private _billingService: BillingService, private _factureService:FactureService){}
+
+  constructor(private _toastr:ToastrService, private route:ActivatedRoute, private router: Router, private _billingService: BillingService, private _factureService:FactureService,private http: HttpClient){}
 
   ngOnInit(){
+
+    this.http.get("../../assets/locale/fa-ir.json").subscribe(res=>{
+      this.language = res;
+    });
 
     let billCode:any = this.route.snapshot.paramMap.get("code");
 

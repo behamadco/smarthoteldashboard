@@ -23,8 +23,6 @@ import { FinancialComponent } from './financial/financial.component';
 import { AppSetting } from './configuration/config';
 import { IMqttServiceOptions, MqttModule } from 'ngx-mqtt';
 import { BillDetailComponent } from './bill-detail/bill-detail.component';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 
 
@@ -60,13 +58,6 @@ const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
     FormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient],
-      },
-    })
   ],
   providers: [],
   bootstrap: [AppComponent]
