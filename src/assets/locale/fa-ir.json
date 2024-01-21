@@ -1,0 +1,23 @@
+{
+    "setting":{
+        "direction":"rtl"
+    },
+
+    "toast":{
+        "error":"خطا",
+        "success":"موفقیت",
+        "info":"اطلاعیه"
+    },
+
+    "messages":{
+        "incorrect-username-password":"نام کاربری و یا گذرواژه نادرست است"
+    },
+
+    "auth":{
+        "dashboard-intro":"ورود به داشبورد",
+        "username": "نام کاربری",
+        "password": "گذرواژه",
+        "remember-me": "مرا بخاطر بسپار",
+        "login":"ورود"
+    }
+}

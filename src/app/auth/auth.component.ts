@@ -4,6 +4,7 @@ import { ISmartUser } from '../interfaces/smartuser.interface';
 import { SmartUserModel } from '../models/smartuser.model';
 import { ToastrService } from 'ngx-toastr';
 import { AppSetting } from '../configuration/config';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -13,13 +14,22 @@ import { AppSetting } from '../configuration/config';
 })
 export class AuthComponent {
 
-  username: string="";
-  password:string="";
+  username : string="";
+  password : string="";
+
+  language:any = "";
 
 
-  constructor(private _authService: AuthService, private toastr: ToastrService){}
+  constructor(private _authService: AuthService, private toastr: ToastrService, private http: HttpClient){
+  }
 
   ngOnInit(){
+
+    this.http.get("../../assets/locale/fa-ir.json").subscribe(res=>{
+      this.language = res;
+    });
+
+    console.log(this.language.auth);
 
     var token = localStorage.getItem("authToken");
     var uuid = localStorage.getItem("useruuid");
@@ -40,7 +50,7 @@ export class AuthComponent {
         localStorage.setItem("useruuid",user.getUUID());
         document.location.href = "/dashboard";
       }else{
-        this.toastr.error("نام کاربری یا گذرواژه نادرست است", "خطا",AppSetting.toastOptions)
+        this.toastr.error(this.language.messages["incorrect-username-password"], this.language.toast["error"],AppSetting.toastOptions)
       }
     });
   }
