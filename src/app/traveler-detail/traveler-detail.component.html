@@ -5,11 +5,11 @@
                 <div *ngIf="hasCurrentResidence" class="card current-room-card" id="currentRoomDiv">	
                     <div class="background current-room-subcard">
                         <div class="card-header border-0 pb-0">
-                            <h4 class="card-title">اقامت فعلی</h4>
+                            <h4 class="card-title">{{ "traveler-detail.current-residence" | translate }}</h4>
                         </div>
                         <div class="card-body">
                             <div class="d-flex mt-4 flex-wrap">
-                                <h4 class="card-title me-auto">شماره اتاق: {{ currentResidenceRoom.getNumber() }}</h4>
+                                <h4 class="card-title me-auto">{{ "traveler-detail.room-number" | translate }}: {{ currentResidenceRoom.getNumber() }}</h4>
                                 <h5 class="card-title">{{ currentResidenceRoom.getDescription() }}</h5>
                             </div>
                         </div>
@@ -21,21 +21,21 @@
                                     </svg>
                                 </span>
                                 <div>
-                                    <h5 class="text-primary" style="direction: rtl;">شماره اقامت: {{ currentResidence.getCode() }}</h5>
+                                    <h5 class="text-primary" style="direction: rtl;">{{ "traveler-detail.residence-number" | translate }}: {{ currentResidence.getCode() }}</h5>
                                     <h4 class="card-title mb-0" style="direction: rtl;">{{  currentResidenceRoom.getType() }}</h4>
                                 </div>
                             </div>
                             <div class="d-sm-flex d-block align-items-center">
                                 <div class="me-5 mb-sm-0 mb-3">
-                                    <p class="mb-2" style="direction: rtl;"><i class="far fa-user scale3 ms-3"></i>ظرفیت اتاق</p>
-                                    <h4 class="mb-0 card-title" style="direction: rtl;">{{ currentResidenceRoom.getCapacity() }} نفر</h4>
+                                    <p class="mb-2" style="direction: rtl;"><i class="far fa-user scale3 ms-3"></i>{{ "traveler-detail.room-capacity" | translate }}</p>
+                                    <h4 class="mb-0 card-title" style="direction: rtl;">{{ currentResidenceRoom.getCapacity() }} {{ "traveler-detail.person" | translate }}</h4>
                                 </div>
                                 <div class="me-5 mb-sm-0 mb-3">
-                                    <p class="mb-2" style="direction: rtl;"><i class="fas fa-bed scale3 ms-3"></i>نوع تخت</p>
+                                    <p class="mb-2" style="direction: rtl;"><i class="fas fa-bed scale3 ms-3"></i>{{  "traveler-detail.bed-type" | translate }}</p>
                                     <h4 class="mb-0 card-title" style="direction: rtl;">{{ currentResidenceRoom.getBedType() }}</h4>
                                 </div>
                                 <div>
-                                    <p class="mb-2" style="direction: rtl;"><i class="far fa-calendar-minus scale3 ms-3"></i>تاریخ</p>
+                                    <p class="mb-2" style="direction: rtl;"><i class="far fa-calendar-minus scale3 ms-3"></i>{{ "traveler-detail.date" | translate }}</p>
                                     <h4 class="mb-0 card-title" style="direction: rtl;">{{ toPersianCalendar(currentResidence.getStartDateAndTime()) }} - {{ toPersianCalendar(currentResidence.getEndDateAndTime()) }}</h4>
                                 </div>
                             </div>
@@ -55,7 +55,7 @@
                         </div>
                         <div class="row mt-4 pt-3">
                             <div class="col-12">
-                                <button type="button" class="btn btn-dark light btn-block" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">تغییر وضعیت</button>
+                                <button type="button" class="btn btn-dark light btn-block" data-bs-toggle="modal" data-bs-target="#changeTravelerStatus">{{ "traveler-detail.change-status" | translate }}</button>
                             </div>
                         </div>
                         <ul class="user-info-list">
@@ -81,11 +81,11 @@
                 <table class="table card-table  display mb-4 dataTablesCard booking-table room-list-tbl table-responsive-lg">
                     <thead>
                         <tr>
-                            <th>شناسه</th>
-                            <th>تاریخ ورود</th>
-                            <th>تاریخ خروج</th>
-                            <th>شماره اتاق</th>
-                            <th>وضعیت</th>
+                            <th>{{ "traveler-detail.code" | translate }}</th>
+                            <th>{{ "traveler-detail.entrance-date" | translate }}</th>
+                            <th>{{ "traveler-detail.exit-date" | translate }}</th>
+                            <th>{{ "traveler-detail.room-number" | translate }}</th>
+                            <th>{{ "traveler-detail.status" | translate }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -133,25 +133,25 @@
     </div>
 </div>
 
-<div class="modal fade" id="exampleModalCenter">
+<div class="modal fade" id="changeTravelerStatus">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header" style="direction: rtl;">
-                <h5 class="modal-title">تغییر وضعیت مسافر</h5>
+                <h5 class="modal-title">{{ "traveler-detail.traveler-change-status" | translate }}</h5>
             </div>
             <div class="modal-body">
                 <ul class="nav nav-pills mb-4 light nav-pills-custom">
                     <li class=" nav-item">
-                        <a href="" (click)="changeCurrentTravelerStatus('NORMAL')" id="normalPill" class="nav-link" data-bs-toggle="tab" aria-expanded="false">عادی</a>
+                        <a href="" (click)="changeCurrentTravelerStatus('NORMAL')" id="normalPill" class="nav-link" data-bs-toggle="tab" aria-expanded="false">{{ "traveler-detail.normal" | translate }}</a>
                     </li>
                     <li class="nav-item">
-                        <a href=" " (click)="changeCurrentTravelerStatus('REPORT')" id="reportPill" class="nav-link" data-bs-toggle="tab" aria-expanded="false">گزارش شده</a>
+                        <a href="" (click)="changeCurrentTravelerStatus('REPORT')" id="reportPill" class="nav-link" data-bs-toggle="tab" aria-expanded="false">{{ "traveler-detail.report" | translate }}</a>
                     </li>
                 </ul>
             </div>
             <div class="modal-footer" style="justify-content: start;">
-                <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">بستن</button>
-                <button type="button" class="btn btn-primary" (click)="submitTravelerStatus()">ذخیره</button>
+                <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">{{ "general.close" | translate }}</button>
+                <button type="button" class="btn btn-primary" (click)="submitTravelerStatus()">{{ "general.submit" | translate }}</button>
             </div>
         </div>
     </div>

@@ -6,27 +6,27 @@
                     <div class="card-tabs mt-3 mt-sm-0 mb-xxl-0 mb-4">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="tab" href="" (click)="filterList('CHECKOUT')" role="tab">تسویه ({{ checkoutTraveler.length }})</a>
+                                <a class="nav-link" data-bs-toggle="tab" href="" (click)="filterList('CHECKOUT')" role="tab">{{ "traveler-list.checkout" | translate }} ({{ checkoutTraveler.length }})</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="tab" href="" (click)="filterList('RESERVE')" role="tab">رزرو ({{ reservedTraveler.length }})</a>
+                                <a class="nav-link" data-bs-toggle="tab" href="" (click)="filterList('RESERVE')" role="tab">{{  "traveler-list.reserve" | translate }} ({{ reservedTraveler.length }})</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="tab" href="" (click)="filterList('LODGING')" role="tab">اسکان ({{ lodgingTraveler.length }})</a>
+                                <a class="nav-link" data-bs-toggle="tab" href="" (click)="filterList('LODGING')" role="tab">{{  "traveler-list.lodging" | translate }} ({{ lodgingTraveler.length }})</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" data-bs-toggle="tab" href="" (click)="filterList('all')" role="tab">تمامی مسافرین ({{ allTraveler.length }})</a>
+                                <a class="nav-link active" data-bs-toggle="tab" href="" (click)="filterList('all')" role="tab">{{ "traveler-list.all-travelers" | translate }} ({{ allTraveler.length }})</a>
                             </li>
                         </ul>
                     </div>
                     <div class="table-search">	
                         <div class="input-group search-area search-div">
-                            <input type="text" class="form-control" placeholder="جستجو...">
+                            <input type="text" class="form-control" placeholder='{{ "traveler-list.search" | translate }}'>
                             <span class="input-group-text"><a href="javascript:void(0)"><i
                                 class="flaticon-381-search-2"></i></a></span>
                         </div>
                     </div>	
-                    <a href="javascript:void(0);" class="btn btn-primary mb-xxl-0 mb-4"><i class="far fa-file-word me-2"></i>خروجی اکسل</a>
+                    <a href="javascript:void(0);" class="btn btn-primary mb-xxl-0 mb-4"><i class="far fa-file-word me-2"></i>{{ "traveler-list.export-as-excel" | translate }}</a>
                 </div>
                 <div class="tab-content">	
                     <div [ngClass]="showAllTraveler ? 'tab-pane show active' : 'tab-pane show'" id="all">
@@ -39,11 +39,11 @@
                                               <input class="form-check-input" type="checkbox" value="" id="checkAll">
                                             </div>
                                         </th>
-                                        <th>نام و نام خانوادگی</th>
-                                        <th>شماره تلفن</th>
-                                        <th>کدملی</th>
-                                        <th>وضعیت اقامت</th>
-                                        <th>وضعیت مسافر</th>
+                                        <th>{{ "traveler-list.first-name-last-name" | translate }}</th>
+                                        <th>{{ "traveler-list.phone-number" | translate }}</th>
+                                        <th>{{ "traveler-list.national-code" | translate }}</th>
+                                        <th>{{ "traveler-list.residence-status" | translate }}</th>
+                                        <th>{{ "traveler-list.traveler-status" | translate }}</th>
                                         <th class="bg-none"></th>
                                     </tr>
                                 </thead>
@@ -73,15 +73,15 @@
                                         </td>
                                         <td>
                                             <div [ngSwitch]="traveler.getLodging()">
-                                                <span class="fs-16" *ngSwitchCase="'LODGING'">اسکان</span>
-                                                <span class="fs-16" *ngSwitchCase="'RESERVE'">رزرو</span>
-                                                <span class="fs-16" *ngSwitchCase="'CHECKOUT'">تسویه</span>
+                                                <span class="fs-16" *ngSwitchCase="'LODGING'">{{ "traveler-list.lodging" | translate }}</span>
+                                                <span class="fs-16" *ngSwitchCase="'RESERVE'">{{ "traveler-list.reserve" | translate }}</span>
+                                                <span class="fs-16" *ngSwitchCase="'CHECKOUT'">{{ "traveler-list.checkout" | translate }} </span>
                                             </div>
                                         </td>
                                         <td>
                                             <div [ngSwitch]="traveler.getStatus()">
-                                                <span class="d-block" *ngSwitchCase="'REPORT'" style="color: red !important;">گزارش شده</span>
-                                                <span class="d-block" *ngSwitchCase="'NORMAL'">عادی</span>
+                                                <span class="d-block" *ngSwitchCase="'REPORT'" style="color: red !important;">{{ "traveler-list.report" | translate }}</span>
+                                                <span class="d-block" *ngSwitchCase="'NORMAL'">{{ "traveler-list.normal" | translate }}</span>
                                             </div>
                                         </td>
                                     </tr>
@@ -99,11 +99,11 @@
                                               <input class="form-check-input" type="checkbox" value="" id="checkAll">
                                             </div>
                                         </th>
-                                        <th>نام و نام خانوادگی</th>
-                                        <th>شماره تلفن</th>
-                                        <th>کدملی</th>
-                                        <th>وضعیت اقامت</th>
-                                        <th>وضعیت مسافر</th>
+                                        <th>{{ "traveler-list.first-name-last-name" | translate }}</th>
+                                        <th>{{ "traveler-list.phone-number" | translate }}</th>
+                                        <th>{{ "traveler-list.national-code" | translate }}</th>
+                                        <th>{{ "traveler-list.residence-status" | translate }}</th>
+                                        <th>{{ "traveler-list.traveler-status" | translate }}</th>
                                         <th class="bg-none"></th>
                                     </tr>
                                 </thead>
@@ -133,15 +133,15 @@
                                         </td>
                                         <td>
                                             <div [ngSwitch]="traveler.getLodging()">
-                                                <span class="fs-16" *ngSwitchCase="'LODGING'">اسکان</span>
-                                                <span class="fs-16" *ngSwitchCase="'RESERVE'">رزرو</span>
-                                                <span class="fs-16" *ngSwitchCase="'CHECKOUT'">تسویه</span>
+                                                <span class="fs-16" *ngSwitchCase="'LODGING'">{{ "traveler-list.lodging" | translate }}</span>
+                                                <span class="fs-16" *ngSwitchCase="'RESERVE'">{{ "traveler-list.reserve" | translate }}</span>
+                                                <span class="fs-16" *ngSwitchCase="'CHECKOUT'">{{ "traveler-list.checkout" | translate }} </span>
                                             </div>
                                         </td>
                                         <td>
                                             <div [ngSwitch]="traveler.getStatus()">
-                                                <span class="d-block" *ngSwitchCase="'REPORT'" style="color: red !important;">گزارش شده</span>
-                                                <span class="d-block" *ngSwitchCase="'NORMAL'">عادی</span>
+                                                <span class="d-block" *ngSwitchCase="'REPORT'" style="color: red !important;">{{ "traveler-list.report" | translate }}</span>
+                                                <span class="d-block" *ngSwitchCase="'NORMAL'">{{ "traveler-list.normal" | translate }}</span>
                                             </div>
                                         </td>
                                     </tr>
@@ -159,11 +159,11 @@
                                               <input class="form-check-input" type="checkbox" value="" id="checkAll">
                                             </div>
                                         </th>
-                                        <th>نام و نام خانوادگی</th>
-                                        <th>شماره تلفن</th>
-                                        <th>کدملی</th>
-                                        <th>وضعیت اقامت</th>
-                                        <th>وضعیت مسافر</th>
+                                        <th>{{ "traveler-list.first-name-last-name" | translate }}</th>
+                                        <th>{{ "traveler-list.phone-number" | translate }}</th>
+                                        <th>{{ "traveler-list.national-code" | translate }}</th>
+                                        <th>{{ "traveler-list.residence-status" | translate }}</th>
+                                        <th>{{ "traveler-list.traveler-status" | translate }}</th>
                                         <th class="bg-none"></th>
                                     </tr>
                                 </thead>
@@ -217,11 +217,11 @@
                                               <input class="form-check-input" type="checkbox" value="" id="checkAll">
                                             </div>
                                         </th>
-                                        <th>نام و نام خانوادگی</th>
-                                        <th>شماره تلفن</th>
-                                        <th>کدملی</th>
-                                        <th>وضعیت اقامت</th>
-                                        <th>وضعیت مسافر</th>
+                                        <th>{{ "traveler-list.first-name-last-name" | translate }}</th>
+                                        <th>{{ "traveler-list.phone-number" | translate }}</th>
+                                        <th>{{ "traveler-list.national-code" | translate }}</th>
+                                        <th>{{ "traveler-list.residence-status" | translate }}</th>
+                                        <th>{{ "traveler-list.traveler-status" | translate }}</th>
                                         <th class="bg-none"></th>
                                     </tr>
                                 </thead>
@@ -251,15 +251,15 @@
                                         </td>
                                         <td>
                                             <div [ngSwitch]="traveler.getLodging()">
-                                                <span class="fs-16" *ngSwitchCase="'LODGING'">اسکان</span>
-                                                <span class="fs-16" *ngSwitchCase="'RESERVE'">رزرو</span>
-                                                <span class="fs-16" *ngSwitchCase="'CHECKOUT'">تسویه</span>
+                                                <span class="fs-16" *ngSwitchCase="'LODGING'">{{ "traveler-list.lodging" | translate }}</span>
+                                                <span class="fs-16" *ngSwitchCase="'RESERVE'">{{ "traveler-list.reserve" | translate }}</span>
+                                                <span class="fs-16" *ngSwitchCase="'CHECKOUT'">{{ "traveler-list.checkout" | translate }} </span>
                                             </div>
                                         </td>
                                         <td>
                                             <div [ngSwitch]="traveler.getStatus()">
-                                                <span class="d-block" *ngSwitchCase="'REPORT'" style="color: red !important;">گزارش شده</span>
-                                                <span class="d-block" *ngSwitchCase="'NORMAL'">عادی</span>
+                                                <span class="d-block" *ngSwitchCase="'REPORT'" style="color: red !important;">{{ "traveler-list.report" | translate }}</span>
+                                                <span class="d-block" *ngSwitchCase="'NORMAL'">{{ "traveler-list.normal" | translate }}</span>
                                             </div>
                                         </td>
                                     </tr>

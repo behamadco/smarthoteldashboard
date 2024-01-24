@@ -8,8 +8,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { AuthComponent } from './auth/auth.component';
-import { NgApexchartsModule } from 'ng-apexcharts';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { RoomComponent } from './room/room.component';
 import { RoomDetailComponent } from './room-detail/room-detail.component';
 import { FormsModule } from '@angular/forms';
@@ -21,17 +20,15 @@ import { TravelerDetailComponent } from './traveler-detail/traveler-detail.compo
 import { CommonModule } from '@angular/common';
 import { FinancialComponent } from './financial/financial.component';
 import { AppSetting } from './configuration/config';
-import { IMqttServiceOptions, MqttModule } from 'ngx-mqtt';
 import { BillDetailComponent } from './bill-detail/bill-detail.component';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 
-
-const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
-  hostname: AppSetting.mqttBroker,
-  port: AppSetting.mqttPort,
-  protocol: 'ws',
-  path: AppSetting.mqttPath,
-};
 
 
 @NgModule({
@@ -50,14 +47,19 @@ const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
     BillDetailComponent
   ],
   imports: [
-    MqttModule.forRoot(MQTT_SERVICE_OPTIONS),
     BrowserModule,
     AppRoutingModule,
-    NgApexchartsModule,
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

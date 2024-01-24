@@ -1,0 +1,180 @@
+{
+    "setting":{
+        "direction":"rtl"
+    },
+
+    "general":{
+        "close":"بستن",
+        "save":"ذخیره",
+        "submit":"ثبت",
+        "search":"جستجو",
+        "copyright":"تمامی حقوق برای بهبود ارتباط چهلستون محفوظ است"
+    },
+
+    "toast":{
+        "error":"خطا",
+        "success":"موفقیت",
+        "info":"اطلاعیه"
+    },
+
+    "messages":{
+        "incorrect-username-password":"نام کاربری و یا گذرواژه نادرست است",
+        "bills-not-fetch": "صورتحساب ها دریافت نشدند. مجدد تلاش فرمایید",
+        "submit-error":"خطا در ثبت اطلاعات",
+        "submit-success":"اطلاعات با موفقیت ثبت شدند",
+        "change-facture-status-error":"وضعیت فاکتور تغییر نکرد. مجدد تلاش فرمایید",
+        "change-facture-status-success":"وضعیت فاکتور با موفقیت تغییر کرد",
+        "fetch-residence-error": "خطا در دریافت اطلاعات اقامت",
+        "fetch-rooms-error":"خطا در دریافت اطلاعات اتاق ها",
+        "fetch-floors-error": "خطا در دریافت اطلاهات طبقات",
+        "fetch-room-types-error":"خطا در دریافت اطلاعات نوع تخت ها",
+        "fill-the-fields-error":"لطفا تمامی مقادیر را پر کنید",
+        "add-room-error":"در ثبت اتاق مشکلی بوجود آمد. لطفا مجدد تلاش فرمایید",
+        "add-room-success": "اتاق با موفقیت ثبت شد",
+        "fetch-room-photo-error":"دریافت اطلاعات تصاویر با مشکل مواجه شد",
+        "fetch-traveler-error":"دریافت اطلاعات مسافر با مشکل مواجه شد",
+        "change-traveler-status-error":"وضعیت مسافر تغییر نکرد. مجدد تلاش فرمایید"
+    },
+
+    "auth":{
+        "dashboard-intro":"ورود به داشبورد",
+        "username": "نام کاربری",
+        "password": "گذرواژه",
+        "remember-me": "مرا بخاطر بسپار",
+        "login":"ورود"
+    },
+
+    "bill-detail":{
+        "payment-status":"وضعیت پرداخت",
+        "creation-date":"تاریخ ایجاد",
+        "bill-code":"شناسه صورتحساب",
+        "code":"شناسه",
+        "title":"عنوان",
+        "facture-price":"مبلغ فاکتور",
+        "description":"توضیحات",
+        "status":"وضعیت",
+        "indebtedness":"بدهکاری",
+        "creditor":"بستانکاری",
+        "add-facture":"افزودن فاکتور",
+        "change-facture-status":"تغییر وضعیت فاکتور",
+        "paid":"پرداخت شده",
+        "unpaid":"پرداخت نشده"
+    },
+
+    "dashboard":{
+        "check-in":"تحویل",
+        "check-out":"تسویه",
+        "available-room":"اتاق های در دسترس",
+        "rooms-status":"وضعیت اتاق ها",
+        "lodging":"اسکان",
+        "reserve":"رزرو",
+        "available":"در دسترس",
+        "check-in-check-out-statistic":"آمار تسویه و تحویل",
+        "code":"شناسه",
+        "entrance-date":"تاریخ ورود",
+        "exit-date":"تاریخ خروج",
+        "room-number":"شماره اتاق",
+        "status":"وضعیت",
+        "normal":"عادی",
+        "report":"گزارش شده"
+    },
+
+    "financial":{
+        "paid":"پرداخت شده",
+        "unpaid":"پرداخت نشده",
+        "all":"همه",
+        "search":"جستجو",
+        "export-as-excel":"خروجی اکسل",
+        "code":"شناسه",
+        "traveler":"مسافر",
+        "price":"مبلغ",
+        "creation-date":"تاریخ ایجاد",
+        "status":"وضعیت"
+    },
+
+    "room":{
+        "lodging":"اسکان",
+        "reserve":"رزرو",
+        "available":"در دسترس",
+        "all":"همه",
+        "search":"جستجو",
+        "export-as-excel":"خروجی اکسل",
+        "add-room":"افزودن اتاق",
+        "room-name":"نام اتاق",
+        "room-type":"نوع اتاق",
+        "floor":"طبقه",
+        "description":"توضیحات",
+        "status":"وضعیت",
+        "room-number":"شماره اتاق",
+        "price":"قیمت (ریال)",
+        "capacity":"ظرفیت",
+        "room-bed-type":"نوع تخت"
+    },
+
+    "room-detail":{
+        "room-number":"شماره اتاق",
+        "room-capacity":"ظرفیت اتاق",
+        "person":"نفر",
+        "room-bed-type":"نوع تخت",
+        "room-price":"قیمت اتاق",
+        "room-status":"وضعیت اتاق",
+        "floor-number":"شماره طبقه",
+        "card-reader":"کارتخوان",
+        "internet":"اینترنت",
+        "lightining":"روشنایی",
+        "thermostat":"ترموستات",
+        "code":"شناسه",
+        "entrance-date":"تاریخ ورود",
+        "exit-date":"تاریخ خروج",
+        "status":"وضعیت",
+        "normal":"عادی",
+        "report":"گزارش شده",
+        "check-in":"تحویل",
+        "check-out":"تسویه",
+        "reserved":"رزرو شده",
+        "available":"در دسترس"
+    },
+
+    "sidebar":{
+        "dashboard":"داشبورد",
+        "rooms":"اتاق ها",
+        "travelers":"مسافران",
+        "financials":"امور مالی",
+        "cameras":"دوربین ها",
+        "food":"غذاخوری"
+    },
+
+    "traveler-detail":{
+        "current-residance":"اقامت فعلی",
+        "room-number":"شماره اتاق",
+        "person":"نفر",
+        "residence-number":"شماره اقامت",
+        "room-capacity":"ظرفیت اتاق",
+        "bed-type":"نوع تخت",
+        "date":"تاریخ",
+        "change-status":"تغییر وضعیت",
+        "code":"شناسه",
+        "entrance-date":"تاریخ ورود",
+        "exit-date":"تاریخ خروج",
+        "status":"وضعیت",
+        "traveler-change-status":"تغییر وضعیت مسافر",
+        "normal":"عادی",
+        "report":"گزارش شده"
+    },
+
+    "traveler-list":{
+        "checkout":"تسویه",
+        "reserve":"رزرو",
+        "lodging":"اسکان",
+        "all-travelers":"تمامی مسافرین",
+        "export-as-excel":"خروجی اکسل",
+        "search":"جستجو",
+        "first-name-last-name":"نام و نام خانوادگی",
+        "phone-number":"شماره تلفن",
+        "national-code":"کدملی",
+        "residence-status":"وضعیت اقامت",
+        "traveler-status":"وضعیت مسافر",
+        "normal":"عادی",
+        "report":"گزارش شده"
+    }
+}

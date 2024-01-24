@@ -6,8 +6,7 @@ import { BillingModel } from '../models/billing.model';
 import { AppSetting } from '../configuration/config';
 import * as persianTools from "@persian-tools/persian-tools";
 import { FactureModel } from '../models/facture.model';
-import { ItemModel } from '../models/item.model';
-import { TravelerModel } from '../models/traveler.model';
+import { TranslateService } from '@ngx-translate/core';
 import { FactureService } from '../services/facture.service';
 
 
@@ -43,14 +42,29 @@ export class BillDetailComponent {
   currentEditableFacture!:FactureModel;
 
   language:any = "";
+  
+  messages:any = "";
+
+  toastsTitle:any = "";
 
 
-  constructor(private _toastr:ToastrService, private route:ActivatedRoute, private router: Router, private _billingService: BillingService, private _factureService:FactureService,private http: HttpClient){}
+  constructor(private _toastr:ToastrService, private route:ActivatedRoute, private router: Router, private _billingService: BillingService, private _factureService:FactureService,private translate: TranslateService){
+
+    this.translate.setDefaultLang('fa');
+  }
 
   ngOnInit(){
 
-    this.http.get("../../assets/locale/fa-ir.json").subscribe(res=>{
-      this.language = res;
+    this.translate.get("bill-detail").subscribe((billDetailTranslate:any)=>{
+      this.language = billDetailTranslate;
+    });
+
+    this.translate.get("messages").subscribe((messagesTranslate:any)=>{
+      this.messages = messagesTranslate;
+    });
+
+    this.translate.get("toast").subscribe((toastTranslate:any)=>{
+      this.toastsTitle = toastTranslate;
     });
 
     let billCode:any = this.route.snapshot.paramMap.get("code");
@@ -64,11 +78,9 @@ export class BillDetailComponent {
 
       var status = getBill["status"];
 
-      console.log(getBill);
-
       if(!status){
 
-        this._toastr.error("خطا در دریافت اطلاعات. لطفا مجدد تلاش فرمایید","خطا",AppSetting.toastOptions);
+        this._toastr.error(this.messages["bills-not-fetch"],this.toastsTitle["error"],AppSetting.toastOptions);
 
       }
 
@@ -126,19 +138,16 @@ export class BillDetailComponent {
     this._factureService.createFacture(factureTitle.value, factureCost.value, factureDescription.value, this.bill.getTraveler(), this.bill).subscribe(createFacture=>{
 
       var status = createFacture["status"];
-      var message = createFacture["message"];
 
       if(!status){
 
-        this._toastr.error("خطا در ثبت اطلاعات","خطا",AppSetting.toastOptions);
-
-        console.log(message);
+        this._toastr.error(this.messages["submit-error"],this.toastsTitle["error"],AppSetting.toastOptions);
 
       }
 
       else{
         
-        this._toastr.success("اطلاعات با موفقیت ثبت شد","موفق",AppSetting.toastOptions);
+        this._toastr.success(this.messages["submit-success"],this.toastsTitle["success"],AppSetting.toastOptions);
         
         location.reload();
 
@@ -151,20 +160,16 @@ export class BillDetailComponent {
       
       var status = modifyFactureStatus["status"];
 
-      var message = modifyFactureStatus["message"];
-
-      console.log(message);
-
       if(!status){
 
-        this._toastr.error("خطا", "در انجام عملیات مشکلی بوجود آمد", AppSetting.toastOptions);
+        this._toastr.error(this.messages["change-facture-status-error"], this.toastsTitle["error"], AppSetting.toastOptions);
 
       }
 
 
       else{
 
-        this._toastr.success("فاکتور با موفقیت تغییر کرد","موفق",AppSetting.toastOptions);
+        this._toastr.success(this.messages["change-facture-status-success"],this.toastsTitle["success"],AppSetting.toastOptions);
 
         this.currentEditableFacture.updateStatus(newStatus=="unpaid" ? "u" : "p");
 
@@ -186,15 +191,11 @@ export class BillDetailComponent {
 
     if(this.currentEditableFacture.getStatus()=="u"){
 
-      console.log("Current Cature is U");
-
       paidPill.classList.remove("active");
 
       unPaidPill.classList.add("active");
 
     }else{
-
-      console.log("Current Cature is P");
 
       unPaidPill.classList.remove("active");
 
@@ -206,9 +207,13 @@ export class BillDetailComponent {
 
 
   toPersianCalendar(timestamp:any){
+
     var gDate = new Date(timestamp);
+
     var jDate = gDate.toLocaleDateString("fa-Ir");
+
     return persianTools.digitsEnToFa(jDate);
+    
   }
 
   toCurrencyFormat(currency:number){

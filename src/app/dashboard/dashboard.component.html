@@ -6,7 +6,7 @@
                     <div class="card-body d-flex align-items-center">
                         <div class="me-auto text-white card-text">
                             <h2 class="text-white">{{ checkInResidencies.length }}</h2>
-                            <span class="fs-18">تحویل</span>
+                            <span class="fs-18">{{ "dashboard.check-in" | translate }}</span>
                         </div>
                         <svg width="58" height="58" viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M9.66671 38.6667V43.5C9.66671 48.8409 13.995 53.1667 19.3334 53.1667H43.5C48.8409 53.1667 53.1667 48.8409 53.1667 43.5C53.1667 35.455 53.1667 22.5475 53.1667 14.5C53.1667 9.16162 48.8409 4.83337 43.5 4.83337C36.5908 4.83337 26.245 4.83337 19.3334 4.83337C13.995 4.83337 9.66671 9.16162 9.66671 14.5V19.3334C9.66671 20.6674 10.7494 21.75 12.0834 21.75C13.4174 21.75 14.5 20.6674 14.5 19.3334C14.5 19.3334 14.5 17.069 14.5 14.5C14.5 11.832 16.6654 9.66671 19.3334 9.66671H43.5C46.1705 9.66671 48.3334 11.832 48.3334 14.5V43.5C48.3334 46.1705 46.1705 48.3334 43.5 48.3334C36.5908 48.3334 26.245 48.3334 19.3334 48.3334C16.6654 48.3334 14.5 46.1705 14.5 43.5C14.5 40.9335 14.5 38.6667 14.5 38.6667C14.5 37.3351 13.4174 36.25 12.0834 36.25C10.7494 36.25 9.66671 37.3351 9.66671 38.6667ZM27.9995 26.5834L24.8748 23.461C23.9323 22.5161 23.9323 20.9864 24.8748 20.0415C25.8197 19.099 27.3495 19.099 28.292 20.0415L35.542 27.2915C36.4869 28.2364 36.4869 29.7661 35.542 30.711L28.292 37.961C27.3495 38.9035 25.8197 38.9035 24.8748 37.961C23.9323 37.0161 23.9323 35.4864 24.8748 34.5415L27.9995 31.4167H7.25004C5.91604 31.4167 4.83337 30.334 4.83337 29C4.83337 27.6685 5.91604 26.5834 7.25004 26.5834H27.9995Z" fill="white"/>
@@ -20,7 +20,7 @@
                     <div class="card-body d-flex align-items-center">
                         <div class="me-auto text-white card-text">
                             <h2 class="text-white">{{ checkoutResidencies.length }}</h2>
-                            <span class="fs-18">تسویه</span>
+                            <span class="fs-18">{{ "dashboard.check-out" | translate }}</span>
                         </div>
                         <svg width="57" height="46" viewBox="0 0 57 46" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M8.55512 20.7503L11.4641 17.8435C12.3415 16.9638 12.3415 15.5397 11.4641 14.6601C10.5844 13.7827 9.16031 13.7827 8.28289 14.6601L1.53353 21.4094C0.653858 22.2891 0.653858 23.7132 1.53353 24.5929L8.28289 31.3422C9.16031 32.2197 10.5844 32.2197 11.4641 31.3422C12.3415 30.4626 12.3415 29.0385 11.4641 28.1588L8.55512 25.2498H27.8718C29.1137 25.2498 30.1216 24.2419 30.1216 23C30.1216 21.7604 29.1137 20.7503 27.8718 20.7503H8.55512Z" fill="white"/>
@@ -38,14 +38,14 @@
                             <div class="card-body">
                                 <div id="radialChart"></div>
                                 <h2>{{ availableRooms.length }}</h2>
-                                <span class="fs-16 text-black">اتاق های در دسترس</span>
+                                <span class="fs-16 text-black">{{ "dashboard.available-room" | translate }}</span>
                             </div>
                         </div>
                     </div>
                     <div class="col-xl-12 col-sm-6">
                         <div class="card">
                             <div class="card-header border-0 pb-0 card-row">
-                                <h4 class="mb-0" style="text-align: center;">وضعیت اتاق ها</h4>
+                                <h4 class="mb-0" style="text-align: center;">{{ "dashboard.rooms-status" | translate }}</h4>
                             </div>
                             <div class="card-body">
                                 <div class="progress mb-4" style="height:13px;">
@@ -64,21 +64,21 @@
                                     <div class="d-flex card-text" style="flex-direction: row-reverse;">
                                         <span class="marker gradient-4" style="margin-left: 5px;"></span>
                                         <div>
-                                            <p class="status">اسکان</p>
+                                            <p class="status">{{ "dashboard.lodging" | translate }}</p>
                                             <span class="result">{{ lodgingRooms.length }}</span>
                                         </div>
                                     </div>
                                     <div class="d-flex card-text" style="flex-direction: row-reverse;">
                                         <span class="marker gradient-5" style="margin-left: 5px;"></span>
                                         <div>
-                                            <p class="status">رزرو</p>
+                                            <p class="status">{{ "dashboard.reserve" | translate }}</p>
                                             <span class="result">{{ reservedRooms.length }}</span>
                                         </div>
                                     </div>
                                     <div class="d-flex card-text justify-content-between" style="flex-direction: row-reverse;">
                                         <span class="marker gradient-6" style="margin-left: 5px;"></span>
                                         <div>
-                                            <p class="status">در دسترس</p>
+                                            <p class="status">{{ "dashboard.available" | translate }}</p>
                                             <span class="result">{{ availableRooms.length }}</span>
                                         </div>
                                     </div>
@@ -93,14 +93,14 @@
                     <div class="card-header border-0">
                         <div class="d-flex me-5">
                             <h3 class="mb-0 me-2">{{ checkInResidencies.length }}</h3>
-                            <span>تحویل</span>
+                            <span>{{ "dashboard.check-in" | translate }}</span>
                         </div>
                         <div class="d-flex me-5">
                             <h3 class="mb-0 me-2">{{ checkoutResidencies.length }}</h3>
-                            <span>تسویه</span>
+                            <span>{{ "dashboard.check-out" | translate }}</span>
                         </div>
                         <div>
-                            <h4 class="card-title mb-2">آمار تسویه و تحویل</h4>
+                            <h4 class="card-title mb-2">{{ "dashboard.check-in-check-out-statistic" | translate }}</h4>
                             <!-- <span>Lorem ipsum dolor sit amet</span> -->
                         </div>
                     </div>
@@ -110,11 +110,11 @@
                                 <table class="table card-table  display mb-4 dataTablesCard booking-table room-list-tbl table-responsive-lg">
                                     <thead>
                                         <tr>
-                                            <th>شناسه</th>
-                                            <th>تاریخ ورود</th>
-                                            <th>تاریخ خروج</th>
-                                            <th>شماره اتاق</th>
-                                            <th>وضعیت</th>
+                                            <th>{{ "dashboard.code" | translate }}</th>
+                                            <th>{{ "dashboard.entrance-date" | translate }}</th>
+                                            <th>{{ "dashboard.exit-date" | translate }}</th>
+                                            <th>{{ "dashboard.room-number" | translate  }}</th>
+                                            <th>{{ "dashboard.status" | translate }}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -174,7 +174,7 @@
                                         </div>
                                         <div>
                                             <h2>{{ round((checkInResidencies.length/allResidencies.length)*100) }}%</h2>
-                                            <span class="fs-18">تحویل</span>
+                                            <span class="fs-18">{{ "dashboard.check-in" | translate }}</span>
                                         </div>
                                     </div>
                                     <div class="col-xl-6 d-flex align-items-center col-sm-6">
@@ -183,7 +183,7 @@
                                         </div>
                                         <div>
                                             <h2>{{ round((checkoutResidencies.length/allResidencies.length)*100) }}%</h2>
-                                            <span class="fs-18">تسویه</span>
+                                            <span class="fs-18">{{ "dashboard.check-out" | translate }}</span>
                                         </div>
                                     </div>
                                 </div>

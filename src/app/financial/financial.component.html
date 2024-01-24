@@ -6,24 +6,24 @@
                     <div class="card-tabs mt-3 mt-sm-0 mb-xxl-0 mb-4">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="tab" href="" (click)="filterList('paid')" role="tab">پرداخت شده ({{ paidBills.length }})</a>
+                                <a class="nav-link" data-bs-toggle="tab" href="" (click)="filterList('paid')" role="tab">{{ "financial.paid" | translate }} ({{ paidBills.length }})</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="tab" href="" (click)="filterList('unpaid')" role="tab">پرداخت نشده ({{ unPaidBills.length }})</a>
+                                <a class="nav-link" data-bs-toggle="tab" href="" (click)="filterList('unpaid')" role="tab">{{ "financial.unpaid" | translate }} ({{ unPaidBills.length }})</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" data-bs-toggle="tab" href="" (click)="filterList('all')" role="tab">همه ({{ allBills.length }})</a>
+                                <a class="nav-link active" data-bs-toggle="tab" href="" (click)="filterList('all')" role="tab">{{ "financial.all" | translate }} ({{ allBills.length }})</a>
                             </li>
                         </ul>
                     </div>
                     <div class="table-search">	
                         <div class="input-group search-area search-div">
-                            <input type="text" class="form-control" placeholder="جستجو...">
+                            <input type="text" class="form-control" placeholder='{{ "financial.search" | translate }}'>
                             <span class="input-group-text"><a href="javascript:void(0)"><i
                                 class="flaticon-381-search-2"></i></a></span>
                         </div>
                     </div>	
-                    <a href="javascript:void(0);" class="btn btn-primary mb-xxl-0 mb-4"><i class="far fa-file-word me-2"></i>خروجی اکسل</a>
+                    <a href="javascript:void(0);" class="btn btn-primary mb-xxl-0 mb-4"><i class="far fa-file-word me-2"></i>{{ "financial.export-as-excel" | translate }}</a>
                 </div>
                 <div class="tab-content">	
                     <div [ngClass]="showAllBills ? 'tab-pane show active' : 'tab-pane show'" id="all">
@@ -36,11 +36,11 @@
                                               <input class="form-check-input" type="checkbox" value="" id="checkAll">
                                             </div>
                                         </th>
-                                        <th>شناسه</th>
-                                        <th>مسافر</th>
-                                        <th>مبلغ (ریال)</th>
-                                        <th>تاریخ ایجاد</th>
-                                        <th>وضعیت</th>
+                                        <th>{{ "financial.code" | translate }}</th>
+                                        <th>{{ "financial.traveler" | translate }}</th>
+                                        <th>{{ "financial.price" | translate }}</th>
+                                        <th>{{ "financial.creation-date" | translate }}</th>
+                                        <th>{{ "financial.status" | translate }}</th>
                                         <th class="bg-none"></th>
                                     </tr>
                                 </thead>
@@ -94,11 +94,11 @@
                                               <input class="form-check-input" type="checkbox" value="" id="checkAll">
                                             </div>
                                         </th>
-                                        <th>شناسه</th>
-                                        <th>مسافر</th>
-                                        <th>مبلغ (ریال)</th>
-                                        <th>تاریخ ایجاد</th>
-                                        <th>وضعیت</th>
+                                        <th>{{ "financial.code" | translate }}</th>
+                                        <th>{{ "financial.traveler" | translate }}</th>
+                                        <th>{{ "financial.price" | translate }}</th>
+                                        <th>{{ "financial.creation-date" | translate }}</th>
+                                        <th>{{ "financial.status" | translate }}</th>
                                         <th class="bg-none"></th>
                                     </tr>
                                 </thead>
@@ -152,11 +152,11 @@
                                               <input class="form-check-input" type="checkbox" value="" id="checkAll">
                                             </div>
                                         </th>
-                                        <th>شناسه</th>
-                                        <th>مسافر</th>
-                                        <th>مبلغ (ریال)</th>
-                                        <th>تاریخ ایجاد</th>
-                                        <th>وضعیت</th>
+                                        <th>{{ "financial.code" | translate }}</th>
+                                        <th>{{ "financial.traveler" | translate }}</th>
+                                        <th>{{ "financial.price" | translate }}</th>
+                                        <th>{{ "financial.creation-date" | translate }}</th>
+                                        <th>{{ "financial.status" | translate }}</th>
                                         <th class="bg-none"></th>
                                     </tr>
                                 </thead>

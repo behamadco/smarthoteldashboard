@@ -1,6 +1,6 @@
 <div class="content-body">
     <div class="container-fluid">
-        <button class="btn btn-primary mb-xxl-0 mb-4" data-bs-toggle="modal" data-bs-target="#addFactureModal"><i class="fa fa-plus me-2"></i>{{ language["bill-detail"]["add-facture"] }}</button>
+        <button class="btn btn-primary mb-xxl-0 mb-4" data-bs-toggle="modal" data-bs-target="#addFactureModal"><i class="fa fa-plus me-2"></i>{{ "bill-detail.add-facture" | translate }}</button>
         
         <div class="row">
             <div class="col-xl-12 col-xxl-12">
@@ -9,13 +9,13 @@
                         <div class="row detail-item-row">
                             <div class="col-sm-6">
                                 <div class="detail-item">
-                                    <span>{{ language["bill-detail"]["payment-status"] }}: </span>
+                                    <span>{{ 'bill-detail.payment-status' | translate }}: </span>
                                     <span>{{ paymentStatus[bill.getStatus()] }}</span>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="detail-item">
-                                    <span>{{ language["bill-detail"]["creation-date"] }}: </span>
+                                    <span>{{ "bill-detail.creation-date" | translate }}: </span>
                                     <span>{{ toPersianCalendar(bill.getDateAndTime()) }}</span>
                                 </div>
                             </div>
@@ -24,7 +24,7 @@
                         <div class="row detail-item-row">
                             <div class="col-sm-12">
                                 <div class="detail-item">
-                                    <span>{{ language["bill-detail"]["bill-code"] }}: </span>
+                                    <span>{{ "bill-detail.bill-code" | translate }}: </span>
                                     <span>{{ bill.getCode() }}</span>
                                 </div>
                             </div>
@@ -40,12 +40,12 @@
                 <table class="table card-table  display mb-4 dataTablesCard booking-table room-list-tbl table-responsive-lg">
                     <thead>
                         <tr>
-                            <th>{{ language["bill-detail"]["code"] }}</th>
-                            <th>{{ language["bill-detail"]["title"] }}</th>
-                            <th>{{ language["bill-detail"]["creation-date"] }}</th>
-                            <th>{{ language["bill-detail"]["facture-price"]  }}</th>
-                            <th>{{ language["bill-detail"]["description"] }}</th>
-                            <th>{{ language["bill-detail"]["status"] }}</th>
+                            <th>{{ "bill-detail.code" | translate }}</th>
+                            <th>{{ "bill-detail.title" | translate }}</th>
+                            <th>{{ "bill-detail.creation-date" | translate }}</th>
+                            <th>{{ "bill-detail.facture-price" | translate  }}</th>
+                            <th>{{ "bill-detail.description" | translate }}</th>
+                            <th>{{ "bill-detail.status" | translate }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -105,13 +105,13 @@
                         <div class="row detail-item-row">
                             <div class="col-sm-6">
                                 <div class="detail-item">
-                                    <span>{{ language["bill-detail"]["creditor"] }}: </span>
+                                    <span>{{ "bill-detail.creditor" | translate }}: </span>
                                     <span>{{ toCurrencyFormat(paidCost) }} </span>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="detail-item">
-                                    <span>{{ language["bill-detail"]["indebtedness"] }}: </span>
+                                    <span>{{ "bill-detail.indebtedness" | translate }}: </span>
                                     <span style="direction: rtl;">{{ toCurrencyFormat(unpaidCost) }} </span>
                                 </div>
                             </div>
@@ -129,7 +129,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header" style="direction: rtl;">
-                <h5 class="modal-title">{{ language["bill-detail"]["add-facture"] }}</h5>
+                <h5 class="modal-title">{{ "bill-detail.add-facture" | translate }}</h5>
             </div>
             <div class="modal-body">
                 <div class="mb-3">
@@ -143,8 +143,8 @@
                 </div>
             </div>
             <div class="modal-footer" style="justify-content: start;">
-                <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">{{ language["general"]["close"] }}</button>
-                <button (click)="addFacture()" type="button" class="btn btn-primary">{{ language["general"]["save"] }}</button>
+                <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">{{ "general.close" | translate }}</button>
+                <button (click)="addFacture()" type="button" class="btn btn-primary">{{ "general.save" | translate }}</button>
             </div>
         </div>
     </div>
@@ -154,15 +154,15 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header" style="direction: rtl;">
-                <h5 class="modal-title">{{ language["bill-detail"]["change-facture-status"] }}</h5>
+                <h5 class="modal-title">{{ "bill-detail.change-facture-status" | translate }}</h5>
             </div>
             <div class="modal-body">
                 <ul class="nav nav-pills mb-4 light nav-pills-custom">
                     <li class=" nav-item">
-                        <a href="" (click)="changeFactureStatus('paid')" id="paidPill" class="nav-link" data-bs-toggle="tab" aria-expanded="false">{{ language["bill-detail"]["paid"] }}</a>
+                        <a href="" (click)="changeFactureStatus('paid')" id="paidPill" class="nav-link" data-bs-toggle="tab" aria-expanded="false">{{ "bill-detail.paid" | translate }}</a>
                     </li>
                     <li class="nav-item">
-                        <a href="" (click)="changeFactureStatus('unpaid')" id="unpaidPill" class="nav-link" data-bs-toggle="tab" aria-expanded="false">{{ language["bill-detail"]["unpaid"] }}</a>
+                        <a href="" (click)="changeFactureStatus('unpaid')" id="unpaidPill" class="nav-link" data-bs-toggle="tab" aria-expanded="false">{{ "bill-detail.unpaid" | translate }}</a>
                     </li>
                 </ul>
             </div>

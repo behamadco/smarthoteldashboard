@@ -21,8 +21,6 @@
     "@ngx-translate/core": "^15.0.0",
     "@ngx-translate/http-loader": "^8.0.0",
     "@persian-tools/persian-tools": "^3.5.0",
-    "apexcharts": "^3.40.0",
-    "ng-apexcharts": "^1.7.6",
     "ngx-toastr": "16.2.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

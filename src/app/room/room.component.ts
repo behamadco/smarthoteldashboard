@@ -6,9 +6,7 @@ import { FloorService } from '../services/floor.service';
 import { ToastrService } from 'ngx-toastr';
 import { AppSetting } from '../configuration/config';
 import { RoomTypeModel } from '../models/roomtype.model';
-import { BehamadSmartHotelMQTT } from '../mqtt/mqtt';
-import { MqttService } from 'ngx-mqtt';
-import { Subscription } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-room',
@@ -28,31 +26,67 @@ export class RoomComponent {
 
   floors:FloorModel[] = [];
   allRoomTypes:RoomTypeModel[] = [];
-  mqttClient!:MqttService;
-  
+
   activatedRfidDevice:boolean=false;
-  constructor(private _roomService: RoomService, private _floorService:FloorService, private _toastr:ToastrService){}
+
+  language:any = "";
+  
+  messages:any = "";
+
+  toastsTitle:any = "";
+
+
+  constructor(private _roomService: RoomService, private _floorService:FloorService, private _toastr:ToastrService, private translate: TranslateService){
+
+    this.translate.get("room").subscribe((billDetailTranslate:any)=>{
+      this.language = billDetailTranslate;
+    });
+
+    this.translate.get("messages").subscribe((messagesTranslate:any)=>{
+      this.messages = messagesTranslate;
+    });
+
+    this.translate.get("toast").subscribe((toastTranslate:any)=>{
+      this.toastsTitle = toastTranslate;
+    });
+
+  }
 
   ngOnInit(){
+
     this._roomService.getAllRooms().subscribe(getRoomData=>{
+
         var status = getRoomData["status"];
+
         if(status){
+
           var data = getRoomData["data"];
+
           for(var index=0;index<data.length;index++){
+
             var room:RoomModel = new RoomModel();
+
             room.fromString(data[index]);
   
             this.allRooms.push(room);
   
             if(data[index]["status"]=="AVAILABLE"){ this.availableRooms.push(room) }
+            
             if(data[index]["status"]=="LODGING"){ this.lodgingRooms.push(room) }
+            
             if(data[index]["status"]=="RESERVE"){ this.reservedRooms.push(room) }
           }
 
           this.fetchFloors();
 
           this.fetchRoomTypes();
-      }
+        }
+
+        else{
+
+          this._toastr.show(this.messages["fetch-rooms-error"],this.toastsTitle["error"],AppSetting.toastOptions);
+
+        }
     });
   }
 
@@ -61,17 +95,27 @@ export class RoomComponent {
   }
 
   fetchFloors(){ 
+    
     this._floorService.getAllFloors().subscribe(getAllFloors=>{
+    
       var status = getAllFloors["status"];
+    
       if(!status){
-        this._toastr.error("خطا در دریافت اطلاعات (Floors)", "خطا", AppSetting.toastOptions);
-      }else{
+    
+        this._toastr.error(this.messages["fetch-floors-error"],this.toastsTitle["error"],AppSetting.toastOptions);
+    
+      }
+      
+      else{
+      
         for(var index=0;index<getAllFloors["data"].length;index++){
+      
           var floor:FloorModel = new FloorModel();
 
           floor.fromString(getAllFloors["data"][index]);
 
           this.floors.push(floor);
+      
         }
       }
     })
@@ -79,19 +123,25 @@ export class RoomComponent {
 
   fetchRoomTypes(){
     this._roomService.getRoomTypes().subscribe(getRoomTypes=>{
+
       var status = getRoomTypes["status"];
 
       if(!status){
 
-        this._toastr.error("خطا در دریافت اطلاعات (RoomTypes)","خطا", AppSetting.toastOptions);
+        this._toastr.error(this.messages["fetch-room-types-error"],this.toastsTitle["error"], AppSetting.toastOptions);
       
-      }else{
+      }
+      
+      else{
+    
         for(var index=0;index<getRoomTypes["data"].length;index++){
+      
           var roomType:RoomTypeModel = new RoomTypeModel();
 
           roomType.fromString(getRoomTypes["data"][index]);
 
           this.allRoomTypes.push(roomType);
+      
         }
       }
     });
@@ -118,13 +168,12 @@ export class RoomComponent {
       var message = createRoom["message"];
 
       if(roomNumber.value=="" || floorNumber.value=="" || roomCost.value=="" || roomType.value=="" || roomCapacity.value=="" || roomBedType.value=="" || roomDescription.value==""){
-        this._toastr.error("لطفا تمامی مقادیر را پر کنید","خطا",AppSetting.toastOptions);
+        this._toastr.error(this.messages["fill-the-fields-error"],this.toastsTitle["error"],AppSetting.toastOptions);
       }else{
         if(!status){
-          this._toastr.error("خطا در ثبت اطلاعات","خطا",AppSetting.toastOptions);
-          console.log(message);
+          this._toastr.error(this.messages["add-room-error"],this.toastsTitle["error"],AppSetting.toastOptions);
         }else{
-          this._toastr.success("اطلاعات با موفقیت ثبت شد","موفق",AppSetting.toastOptions);
+          this._toastr.success(this.messages["add-room-success"],this.toastsTitle["success"],AppSetting.toastOptions);
           location.reload();
         }
       }
@@ -132,8 +181,6 @@ export class RoomComponent {
   }
 
   fliterList(roomStatus:string){
-
-    console.log("Filter to ", roomStatus);
 
     if(roomStatus=="all"){
       this.showAvailableRoom = false;

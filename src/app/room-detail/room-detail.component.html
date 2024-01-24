@@ -6,18 +6,18 @@
                     <div class="current-room-subcard">
                         <div class="card-body">
                             <div class="d-flex mt-4 flex-wrap">
-                                <h4 class="card-title me-auto">شماره اتاق: {{ room.getNumber() }}</h4>
+                                <h4 class="card-title me-auto">{{ "room-detail.room-number" | translate }} {{ room.getNumber() }}</h4>
                                 <h5 class="card-title">{{ room.getDescription() }}</h5>
                             </div>
                         </div>
                         <div class="card-body room-card">
                             <div class="d-sm-flex d-block align-items-center">
                                 <div class="me-5 mb-sm-0 mb-3">
-                                    <p class="mb-2" style="direction: rtl;"><i class="far fa-user scale3 ms-3"></i>ظرفیت اتاق</p>
-                                    <h4 class="mb-0 card-title" style="direction: rtl;">{{ room.getCapacity() }} نفر</h4>
+                                    <p class="mb-2" style="direction: rtl;"><i class="far fa-user scale3 ms-3"></i>{{ "room-detail.room-capacity" | translate }}</p>
+                                    <h4 class="mb-0 card-title" style="direction: rtl;">{{ room.getCapacity() }} {{ "room-detail.person" | translate }}</h4>
                                 </div>
                                 <div class="me-5 mb-sm-0 mb-3">
-                                    <p class="mb-2" style="direction: rtl;"><i class="fas fa-bed scale3 ms-3"></i>نوع تخت</p>
+                                    <p class="mb-2" style="direction: rtl;"><i class="fas fa-bed scale3 ms-3"></i>{{ "room-detail.room-bed-type" | translate }}</p>
                                     <h4 class="mb-0 card-title" style="direction: rtl;">{{ room.getBedType() }}</h4>
                                 </div>
                             </div>
@@ -33,13 +33,13 @@
                         <div class="row detail-item-row">
                             <div class="col-sm-6">
                                 <div class="detail-item">
-                                    <span>قیمت اتاق: </span>
+                                    <span>{{ "room-detail.room-price" | translate }}: </span>
                                     <span>{{ room.getCost() }}</span>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="detail-item">
-                                    <span>وضعیت اتاق: </span>
+                                    <span>{{ "room-detail.room-status" | translate }}: </span>
                                     <span [ngClass]="room.getReservation() ? 'available-item' : ''">{{ reservationStatus }}</span>
                                 </div>
                             </div>
@@ -48,13 +48,13 @@
                         <div class="row detail-item-row">
                             <div class="col-sm-6">
                                 <div class="detail-item">
-                                    <span>شماره اتاق: </span>
+                                    <span>{{  "room-detail.room-number" | translate }}: </span>
                                     <span>{{ room.getNumber() }}</span>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="detail-item">
-                                    <span>شماره طبقه: </span>
+                                    <span>{{ "room-detail.floor-number" | translate }}: </span>
                                     <span>{{ room.getFloor().getNumber() }}</span>
                                 </div>
                             </div>
@@ -68,19 +68,19 @@
                 <div class="card-header border-0" style="text-align: center;">
                     <div class="col-xl-3 col-xxl-3">
                         <img src="../../assets/images/card.png" alt="" class="deactivate-option" style="width: 20%; height: 100%;">
-                        <p>کارتخوان</p>
+                        <p>{{ "room-detail.card-reader" | translate }}</p>
                     </div>
                     <div class="col-xl-3 col-xxl-3">
                         <img src="../../assets/images/wifi.png" alt="" class="deactivate-option" style="width: 20%; height: 100%;">
-                        <p>اینترنت</p>
+                        <p>{{  "room-detail.internet" | translate }}</p>
                     </div>
                     <div class="col-xl-3 col-xxl-3">
                         <img src="../../assets/images/lightning.png" class="deactivate-option" alt="" style="width: 20%; height: 100%;">
-                        <p>روشنایی</p>
+                        <p>{{  "room-detail.lightining" | translate }}</p>
                     </div>
                     <div class="col-xl-3 col-xxl-3">
                         <img src="../../assets/images/thermostat.png" class="deactivate-option" alt="" style="width: 20%; height: 100%;">
-                        <p>ترموستات</p>
+                        <p>{{  "room-detail.thermostat" | translate }}</p>
                     </div>
                 </div>
             </div>
@@ -91,11 +91,11 @@
                 <table class="table card-table  display mb-4 dataTablesCard booking-table room-list-tbl table-responsive-lg">
                     <thead>
                         <tr>
-                            <th>شناسه</th>
-                            <th>تاریخ ورود</th>
-                            <th>تاریخ خروج</th>
-                            <th>شماره اتاق</th>
-                            <th>وضعیت</th>
+                            <th>{{ "room-detail.code" | translate }}</th>
+                            <th>{{ "room-detail.entrance-date" | translate }}</th>
+                            <th>{{ "room-detail.exit-date" | translate }}</th>
+                            <th>{{ "room-detail.room-number" | translate }}</th>
+                            <th>{{ "room-detail.status" | translate }}</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -4,37 +4,37 @@
             <li [routerLink]="['/dashboard']">
                 <a class="has-arrow ai-icon sidebar-link" [routerLinkActive]="['active-nav']">
                     <i class="flaticon-025-dashboard"></i>
-                    <span class="nav-text">داشبورد</span>
+                    <span class="nav-text">{{ "sidebar.dashboard" | translate }}</span>
                 </a>
             </li>
             <li [routerLink]="['/rooms']">
                 <a class="has-arrow ai-icon sidebar-link" [routerLinkActive]="['active-nav']">
                     <i class="flaticon-013-checkmark"></i>
-                    <span class="nav-text-sidebar nav-text">اتاق ها</span>
+                    <span class="nav-text-sidebar nav-text">{{ "sidebar.rooms" | translate }}</span>
                 </a>
             </li>
             <li [routerLink]="['/travelers']">
                 <a class="has-arrow ai-icon sidebar-link" [routerLinkActive]="['active-nav']">
                     <i class="flaticon-381-user-8"></i>
-                    <span class="nav-text-sidebar nav-text">مسافران</span>
+                    <span class="nav-text-sidebar nav-text">{{ "sidebar.travelers" | translate }}</span>
                 </a>
             </li>
             <li [routerLink]="['/financial-bills']">
                 <a class="has-arrow ai-icon sidebar-link" [routerLinkActive]="['active-nav']">
                     <i class="flaticon-381-id-card"></i>
-                    <span class="nav-text-sidebar nav-text">امور مالی</span>
+                    <span class="nav-text-sidebar nav-text">{{ "sidebar.financials" | translate }}</span>
                 </a>
             </li>
             <li [routerLink]="['/cameras']">
                 <a class="has-arrow ai-icon sidebar-link" [routerLinkActive]="['active-nav']">
                     <i class="flaticon-381-video-camera"></i>
-                    <span class="nav-text-sidebar nav-text">دوربین ها</span>
+                    <span class="nav-text-sidebar nav-text">{{ "sidebar.cameras" | translate }}</span>
                 </a>
             </li>
             <li [routerLink]="['/food']">
                 <a class="has-arrow ai-icon sidebar-link" [routerLinkActive]="['active-nav']" >
                     <i class="flaticon-381-food"></i>
-                    <span class="nav-text-sidebar nav-text">غذاخوری</span>
+                    <span class="nav-text-sidebar nav-text">{{ "sidebar.food" | translate }}</span>
                 </a>
             </li>
         </ul>
